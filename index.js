@@ -4,6 +4,9 @@ const readline = require("readline-sync");
 
 // Welcome message using ASCII art
 console.log(
+  chalk.yellow(figlet.textSync("            Welcome to", { horizontalLayout: "full" }))
+);
+console.log(
   chalk.yellow(
     figlet.textSync("Escape The Dungeon", { horizontalLayout: "full" })
   )
