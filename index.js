@@ -1,7 +1,7 @@
-const inquirer = require("inquirer");
-const chalk = require("chalk");
-const figlet = require("figlet");
 const readline = require("readline-sync");
+const figlet = require("figlet");
+const chalk = require("chalk");
+const { Select } = require('enquirer');
 
 // Welcome message using ASCII art
 /* console.log(
@@ -71,12 +71,12 @@ console.log(
 // Function to display the room with two doors (left and right)
 function showTwoDoorsRoom() {
   let roomArt = `
-     \\                   !!! CHOOSE THE DOOR !!!                     /
+     \\                                                               /
       \\                                                             /
        \\ _________________________________________________________ /
         |     -_-                                             _-  |
         |_-_- _                                         -_- _-   -|     
-        |          LEFT             _-  _--         RIGHT         | 
+        |          LEFT             _-  _--    ＲＥＩＧＨＴ         | 
         |      _____________         ,         _____________      |
         |     / /███████████\\        (        / /███████████\\     |
         |    / /█████████████\\       )       / /█████████████\\    |          
@@ -87,6 +87,8 @@ function showTwoDoorsRoom() {
         |  |  |████████████████|    .|.    |  |████████████████|  |
         |  |  |████████████████|     |     |  |████████████████|  |  
         |  |  |████████████████|     !     |  |████████████████|  |
+        |  |  |████████████████|        -  |  |████████████████|  |
+        |  |  |████████████████|        -  |  |████████████████|  |
         |  |  |████████████████|        -  |  |████████████████|  |
         |  | /__--    __-- _   |   _- _ -  | /__--    __-- _   |  |
         |__|/__________________|___________|/__________________|__|
@@ -101,28 +103,33 @@ function showTwoDoorsRoom() {
   console.log(chalk.greenBright(roomArt));
 }
 
-// Function to prompt the player to choose a direction using readline-sync
-function chooseDirection() {
-  const options = ['Left', 'Right'];
-  
-  const index = readline.keyInSelect(options, 'Which door do you choose?');
-  
-  if (index === 0) {
-    console.log(chalk.yellow("\nYou head through the Left door..."));
-    // Add your logic for the left door here
-  } else if (index === 1) {
-    console.log(chalk.yellow("\nYou head through the Right door..."));
-    // Add your logic for the right door here
-  } else {
-    console.log(chalk.red("You decided not to choose a door. Exiting the game..."));
-    process.exit();
+// Function to prompt the player to choose a direction using enquirer
+async function chooseDirection() {
+  const prompt = new Select({
+    name: 'direction',
+    message: 'ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ！！！',
+    choices: ['  ＬＥＦＴ ', ' ＲＥＩＧＨＴ']
+  });
+
+  try {
+    const answer = await prompt.run();
+
+    if (answer === 'Left') {
+      console.log(chalk.yellow("\nYou head through the Left door..."));
+      // Add your logic for the left door here
+    } else if (answer === 'Right') {
+      console.log(chalk.yellow("\nYou head through the Right door..."));
+      // Add your logic for the right door here
+    }
+  } catch (error) {
+    console.log(chalk.red('Error with enquirer:', error));
   }
 }
 
 // Function to initiate the room and player choice
-function startDungeonSection() {
+async function startDungeonSection() {
   showTwoDoorsRoom(); // Show the new room with two doors
-  chooseDirection(); // Ask the player to choose between Left and Right
+  await chooseDirection(); // Ask the player to choose between Left and Right
 }
 
 startDungeonSection();
