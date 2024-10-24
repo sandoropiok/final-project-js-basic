@@ -68,21 +68,22 @@ console.log(
   )
 );
 
-function showTwoDoorRoom() {
+// Function to display the room with two doors (left and right)
+function showTwoDoorsRoom() {
   let roomArt = `
-     \\                                                               /
-      \\                  !!! CHOOSE THE DOOR !!!                    / 
+     \\                   !!! CHOOSE THE DOOR !!!                     /
+      \\                                                             /
        \\ _________________________________________________________ /
         |     -_-                                             _-  |
         |_-_- _                                         -_- _-   -|     
         |          LEFT             _-  _--         RIGHT         | 
         |      _____________         ,         _____________      |
-        |     / /███████████\\       (         / /███████████\\     |
-        |    / /█████████████\\      )        / /█████████████\\    |          
-        |   / /███████████████\\     U       / /███████████████\\   |
-        |  /  |████████████████\\o   T   o  /  |████████████████\\  |
+        |     / /███████████\\        (        / /███████████\\     |
+        |    / /█████████████\\       )       / /█████████████\\    |          
+        |   / /███████████████\\      U      / /███████████████\\   |
+        |  /  |████████████████\\ o   T   o /  |████████████████\\  |
         |  |  |████████████████|  .  |  .  |  |████████████████|  |
-        |  |  |█0██████████████|   . | .   |  |█0██████████████|  |
+        |  |  |████████████████|   . | .   |  |████████████████|  |
         |  |  |████████████████|    .|.    |  |████████████████|  |
         |  |  |████████████████|     |     |  |████████████████|  |  
         |  |  |████████████████|     !     |  |████████████████|  |
@@ -91,42 +92,36 @@ function showTwoDoorRoom() {
         |__|/__________________|___________|/__________________|__|
        /                                             _ -           \\
       /   -_- _ -             _- _---                       -_-  -_ \\
-  ___/             __-                         _- _---               \\__
+     /             __-                         _- _---               \\
 `;
+
   console.log(
     chalk.whiteBright(`\nYou find yourself in a dimly lit room with two doors:`)
   );
-  console.log(chalk.green(roomArt));
+  console.log(chalk.greenBright(roomArt));
 }
-// Function to prompt the player to choose a direction using Inquirer
+
+// Function to prompt the player to choose a direction using readline-sync
 function chooseDirection() {
-  inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "direction",
-        message: "Which door do you choose?",
-        choices: ["Left", "Right"],
-      },
-    ])
-    .then((answers) => {
-      // Handle the choice
-      if (answers.direction === "Left") {
-        console.log(chalk.yellow("\nYou head through the Left door..."));
-        // Add your logic for the left door here
-      } else if (answers.direction === "Right") {
-        console.log(chalk.yellow("\nYou head through the Right door..."));
-        // Add your logic for the right door here
-      }
-    })
-    .catch((error) => {
-      console.log("Error with Inquirer:", error);
-    });
+  const options = ['Left', 'Right'];
+  
+  const index = readline.keyInSelect(options, 'Which door do you choose?');
+  
+  if (index === 0) {
+    console.log(chalk.yellow("\nYou head through the Left door..."));
+    // Add your logic for the left door here
+  } else if (index === 1) {
+    console.log(chalk.yellow("\nYou head through the Right door..."));
+    // Add your logic for the right door here
+  } else {
+    console.log(chalk.red("You decided not to choose a door. Exiting the game..."));
+    process.exit();
+  }
 }
 
 // Function to initiate the room and player choice
 function startDungeonSection() {
-  showTwoDoorRoom(); // Show the new room with two doors
+  showTwoDoorsRoom(); // Show the new room with two doors
   chooseDirection(); // Ask the player to choose between Left and Right
 }
 
