@@ -2,8 +2,10 @@ const readline = require("readline-sync");
 const figlet = require("figlet");
 const chalk = require("chalk");
 const { Select } = require("enquirer");
-const playNumberGuessingGame = require('./numberGuessingGame'); // Import the number guessing game function
-
+// Import the number guessing game function
+const playNumberGuessingGame = require("./numberGuessingGame");
+// Import the riddle challenge function
+const riddleChallenge = require("./riddleChallenge");
 
 // Welcome message using ASCII art
 console.log(
@@ -89,7 +91,9 @@ function showTwoDoorsRoom() {
 `;
 
   console.log(
-    chalk.whiteBright(`\n      𝗬𝗼𝘂 𝗳𝗶𝗻𝗱 𝘆𝗼𝘂𝗿𝘀𝗲𝗹𝗳 𝗶𝗻 𝗮 𝗱𝗶𝗺𝗹𝘆 𝗹𝗶𝘁 𝗿𝗼𝗼𝗺 𝘄𝗶𝘁𝗵 𝘁𝘄𝗼 𝗱𝗼𝗼𝗿𝘀:`)
+    chalk.whiteBright(
+      `\n      𝗬𝗼𝘂 𝗳𝗶𝗻𝗱 𝘆𝗼𝘂𝗿𝘀𝗲𝗹𝗳 𝗶𝗻 𝗮 𝗱𝗶𝗺𝗹𝘆 𝗹𝗶𝘁 𝗿𝗼𝗼𝗺 𝘄𝗶𝘁𝗵 𝘁𝘄𝗼 𝗱𝗼𝗼𝗿𝘀:`
+    )
   );
   console.log(chalk.greenBright(roomArt));
 }
@@ -105,20 +109,20 @@ function chooseDirection() {
   prompt
     .run()
     .then((answer) => {
-      if (answer === '  ＬＥＦＴ') {
+      if (answer === "  ＬＥＦＴ") {
         console.log(
           chalk.yellow(
             "\nThere's a note on the door: 'To open this door, you need to guess the correct number...'"
           )
         );
         playNumberGuessingGame(); // Call the number guessing game
-      } else if (answer === '  ＲＥＩＧＨＴ') {
+      } else if (answer === "  ＲＥＩＧＨＴ") {
         console.log(chalk.yellow("\nYou head through the Right door..."));
-        // Logic for the right door goes here
+        riddleChallenge(); // Call the riddle challenge for the Right door
       }
     })
     .catch((error) => {
-      console.log(chalk.red('Error with enquirer:', error));
+      console.log(chalk.red("Error with enquirer:", error));
     });
 }
 
