@@ -1,6 +1,6 @@
 // numberGuessingGame.js
-const readlineSync = require('readline-sync');
-const chalk = require('chalk');
+const readlineSync = require("readline-sync");
+const chalk = require("chalk");
 
 function playNumberGuessingGame() {
   // Display the room with an ASCII art representation of the left door
@@ -18,26 +18,38 @@ function playNumberGuessingGame() {
       |████████████████████████████████████████████████████████████████████████████████████|
   `;
 
-  console.log(chalk.blueBright("\n      Gᥙҽടട 𝜏ԋҽ ɳᥙⲙßҽɾ ßҽ𝜏ɯҽҽɳ 1 αɳԃ 10 𝜏σ σρҽɳ 𝜏ԋҽ ԃσσɾ, ყσᥙ ԋαʋҽ 3 α𝜏𝜏ҽⲙρ𝜏ട."));
   console.log(chalk.greenBright(doorArt));
-
+  console.log(
+    chalk.blueBright(
+      "      Gᥙҽടട 𝜏ԋҽ ɳᥙⲙßҽɾ ßҽ𝜏ɯҽҽɳ 1 αɳԃ 10 𝜏σ σρҽɳ 𝜏ԋҽ ԃσσɾ, ყσᥙ ԋαʋҽ 3 α𝜏𝜏ҽⲙρ𝜏ട."
+    )
+  );
 
   const targetNumber = Math.floor(Math.random() * 10) + 1;
   let attempts = 0;
   let guessedCorrectly = false;
 
   while (!guessedCorrectly && attempts < 3) {
-    const guess = readlineSync.questionInt(chalk.magenta("\n      Ɛɳ𝜏ҽɾ ყσᥙɾ ցᥙҽടട: "));
+    const guess = readlineSync.questionInt(
+      chalk.bold.magenta("\n      ᕮƝƬᕮᖇ Ⴤ〇⋃ᖇ Ꮆᑌᕮ⟆⟆: ")
+    );
     attempts++;
 
     if (guess === targetNumber) {
-      console.log(chalk.green("      Cσɾɾҽ𝛓𝜏! ㆜ԋҽ ԃσσɾ ᥙɳɬσ𝛓ƙട, αɳԃ ყσᥙ ρɾσ𝛓ҽҽԃ 𝜏σ 𝜏ԋҽ ɳҽχ𝜏 ɾσσⲙ..."));
+      console.log(
+        chalk.green(`  
+        ▒█▀▀█ █▀▀█ █▀▀█ █▀▀█ █▀▀ █▀▀ ▀▀█▀▀ █ 
+        ▒█░░░ █░░█ █▄▄▀ █▄▄▀ █▀▀ █░░ ░░█░░ █ 
+        ▒█▄▄█ ▀▀▀▀ ▀░▀▀ ▀░▀▀ ▀▀▀ ▀▀▀ ░░▀░░ ▄
+     
+      Ƭᕼᕮ ↁ〇〇ᖇ ⋃Ɲし〇ᙅ𐌊⟆, ᗩƝↁ Ⴤ〇⋃ ᑭᖇ〇ᑕᕮᕮↁ Ƭ〇 Ƭᕼᕮ ƝᕮⲬƬ ↁ〇〇ᖇ...`)
+      );
       guessedCorrectly = true;
       // Add code here to proceed to the next part of the dungeon if needed
     } else if (guess < targetNumber) {
-      console.log(chalk.red("      ㆜OO ⳐOᗯ! ㆜ɾყ αցαιɳ."));
+      console.log(chalk.red("\n      Ƭ〇〇 し〇ᗯ❗ ƬᖇႸ ᎯɢᎯ⫯ﬡ."));
     } else {
-      console.log(chalk.red("      ㆜OO ԊｴGԨ! ㆜ɾყ αցαιɳ."));
+      console.log(chalk.red("\n      Ƭ〇〇 ᕼᓮᎶᕼ❗ ƬᖇႸ ᎯɢᎯ⫯ﬡ."));
     }
   }
 
