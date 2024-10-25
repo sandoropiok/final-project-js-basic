@@ -2,6 +2,8 @@ const readline = require("readline-sync");
 const figlet = require("figlet");
 const chalk = require("chalk");
 const { Select } = require("enquirer");
+const playNumberGuessingGame = require('./numberGuessingGame'); // Import the number guessing game function
+
 
 // Welcome message using ASCII art
 console.log(
@@ -93,32 +95,37 @@ function showTwoDoorsRoom() {
 }
 
 // Function to prompt the player to choose a direction using enquirer
-async function chooseDirection() {
+function chooseDirection() {
   const prompt = new Select({
     name: "direction",
     message: "  ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ ！！！",
     choices: ["  ＬＥＦＴ", "  ＲＥＩＧＨＴ"],
   });
 
-  try {
-    const answer = await prompt.run();
-
-    if (answer === "Left") {
-      console.log(chalk.yellow("\nYou head through the Left door..."));
-      // Add your logic for the left door here
-    } else if (answer === "Right") {
-      console.log(chalk.yellow("\nYou head through the Right door..."));
-      // Add your logic for the right door here
-    }
-  } catch (error) {
-    console.log(chalk.red("Error with enquirer:", error));
-  }
+  prompt
+    .run()
+    .then((answer) => {
+      if (answer === '  ＬＥＦＴ') {
+        console.log(
+          chalk.yellow(
+            "\nThere's a note on the door: 'To open this door, you need to guess the correct number...'"
+          )
+        );
+        playNumberGuessingGame(); // Call the number guessing game
+      } else if (answer === '  ＲＥＩＧＨＴ') {
+        console.log(chalk.yellow("\nYou head through the Right door..."));
+        // Logic for the right door goes here
+      }
+    })
+    .catch((error) => {
+      console.log(chalk.red('Error with enquirer:', error));
+    });
 }
 
 // Function to initiate the room and player choice
-async function startDungeonSection() {
+function startDungeonSection() {
   showTwoDoorsRoom(); // Show the new room with two doors
-  await chooseDirection(); // Ask the player to choose between Left and Right
+  chooseDirection(); // Ask the player to choose between Left and Right
 }
 
 startDungeonSection();
