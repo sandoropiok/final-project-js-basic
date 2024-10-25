@@ -112,12 +112,12 @@ function chooseDirection() {
       if (answer === "  ＬＥＦＴ") {
         console.log(
           chalk.yellow(
-            "\nThere's a note on the door: 'To open this door, you need to guess the correct number...'"
+            "\n      𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚗𝚘𝚝𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚢𝚘𝚞 𝚗𝚎𝚎𝚍 𝚝𝚘 𝚐𝚞𝚎𝚜𝚜 𝚝𝚑𝚎 𝚌𝚘𝚛𝚛𝚎𝚌𝚝 𝚗𝚞𝚖𝚋𝚎𝚛...'"
           )
         );
         playNumberGuessingGame(); // Call the number guessing game
       } else if (answer === "  ＲＥＩＧＨＴ") {
-        console.log(chalk.yellow("\nYou head through the Right door..."));
+        console.log(chalk.yellow("\n      𝗧𝗵𝗲𝗿𝗲❜𝘀 𝗮 𝗿𝗶𝗱𝗱𝗹𝗲 𝗼𝗻 𝘁𝗵𝗲 𝗱𝗼𝗼𝗿: ❜𝗧𝗼 𝗼𝗽𝗲𝗻 𝘁𝗵𝗶𝘀 𝗱𝗼𝗼𝗿, 𝗮𝗻𝘀𝘄𝗲𝗿 𝘁𝗵𝗲 𝗳𝗼𝗹𝗹𝗼𝘄𝗶𝗻𝗴...❜"));
         riddleChallenge(); // Call the riddle challenge for the Right door
       }
     })
