@@ -31,7 +31,7 @@ function playNumberGuessingGame() {
 
   while (!guessedCorrectly && attempts < 3) {
     const guess = readlineSync.questionInt(
-      chalk.bold.magenta("\n      ᕮƝƬᕮᖇ Ⴤ〇⋃ᖇ Ꮆᑌᕮ⟆⟆: ")
+      chalk.magenta("\n      ᕮƝƬᕮᖇ Ⴤ〇⋃ᖇ Ꮆᑌᕮ⟆⟆: ")
     );
     attempts++;
 
@@ -47,9 +47,9 @@ function playNumberGuessingGame() {
       guessedCorrectly = true;
       // Add code here to proceed to the next part of the dungeon if needed
     } else if (guess < targetNumber) {
-      console.log(chalk.red("\n      Ƭ〇〇 し〇ᗯ❗ ƬᖇႸ ᎯɢᎯ⫯ﬡ."));
+      console.log(chalk.bold.red("\n      Ƭ〇〇 し〇ᗯ❗ ƬᖇႸ ᎯɢᎯ⫯ﬡ."));
     } else {
-      console.log(chalk.red("\n      Ƭ〇〇 ᕼᓮᎶᕼ❗ ƬᖇႸ ᎯɢᎯ⫯ﬡ."));
+      console.log(chalk.bold.red("\n      Ƭ〇〇 ᕼᓮᎶᕼ❗ ƬᖇႸ ᎯɢᎯ⫯ﬡ."));
     }
   }
 
