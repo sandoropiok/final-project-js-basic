@@ -1,21 +1,9 @@
 const readline = require("readline-sync");
 const figlet = require("figlet");
 const chalk = require("chalk");
-const { Select } = require('enquirer');
+const { Select } = require("enquirer");
 
 // Welcome message using ASCII art
-/* console.log(
-  chalk.yellow(
-    figlet.textSync("            Welcome to", { horizontalLayout: "full" })
-  )
-);
-console.log(
-  chalk.yellow(
-    figlet.textSync("Escape The Dungeon", { horizontalLayout: "full" })
-  )
-); */
-
-// Game description
 console.log(
   chalk.redBright(`
           ▄   ▄   ▄▄▄ ▒█        ▄▄▄  ▄▄▄▄    ▄▄▄      █     ▄▄▄  
@@ -45,6 +33,7 @@ console.log(
        ░                ░            ░                      ░            ░ 
 `)
 );
+// Game description
 console.log(
   chalk.greenBright(`
       Ⴤσᥙ ⨍ιɳԃ ყσᥙɾ⟆ҽɬ⨍ 𝜏ɾαρρҽԃ ιɳ α ԃαɾƙ, ⲙყ⟆𝜏ҽɾισᥙ⟆ ԃᥙɳցҽσɳ ⨍ιɬɬҽԃ ɯι𝜏ԋ 
@@ -64,7 +53,7 @@ let username = readline.question(
 // Greet the player
 console.log(
   chalk.yellowBright(
-    `\nWelcome, ${username}! Let the dungeon's challenges begin...`
+    `\n      𝚆𝚎𝚕𝚌𝚘𝚖𝚎, ${username.toUpperCase()}! 𝙻𝚎𝚝 𝚝𝚑𝚎 𝚍𝚞𝚗𝚐𝚎𝚘𝚗'𝚜 𝚌𝚑𝚊𝚕𝚕𝚎𝚗𝚐𝚎𝚜 𝚋𝚎𝚐𝚒𝚗...`
   )
 );
 
@@ -80,11 +69,11 @@ function showTwoDoorsRoom() {
         |      _____________         ,         _____________      |
         |     / /███████████\\        (        / /███████████\\     |
         |    / /█████████████\\       )       / /█████████████\\    |          
-        |   / /███████████████\\      U      / /███████████████\\   |
-        |  /  |████████████████\\ o   T   o /  |████████████████\\  |
-        |  |  |████████████████|  .  |  .  |  |████████████████|  |
+        |   / /███████████████\\     'U'     / /███████████████\\   |
+        |  /  |████▌▓▓▓▓▓▓▐████\\ o   T   o /  |████▌▓▓▓▓▓▓▐████\\  |
+        |  |  |████▌▓▓▓▓▓▓▐████|  .  |  .  |  |████▌▓▓▓▓▓▓▐████|  |
         |  |  |████████████████|   . | .   |  |████████████████|  |
-        |  |  |████████████████|    .|.    |  |████████████████|  |
+        |  |  |█▌#▐████████████|    .|.    |  |█▌#▐████████████|  |
         |  |  |████████████████|     |     |  |████████████████|  |  
         |  |  |████████████████|     !     |  |████████████████|  |
         |  |  |████████████████|        -  |  |████████████████|  |
@@ -98,7 +87,7 @@ function showTwoDoorsRoom() {
 `;
 
   console.log(
-    chalk.whiteBright(`\nYou find yourself in a dimly lit room with two doors:`)
+    chalk.whiteBright(`\n      𝗬𝗼𝘂 𝗳𝗶𝗻𝗱 𝘆𝗼𝘂𝗿𝘀𝗲𝗹𝗳 𝗶𝗻 𝗮 𝗱𝗶𝗺𝗹𝘆 𝗹𝗶𝘁 𝗿𝗼𝗼𝗺 𝘄𝗶𝘁𝗵 𝘁𝘄𝗼 𝗱𝗼𝗼𝗿𝘀:`)
   );
   console.log(chalk.greenBright(roomArt));
 }
@@ -106,23 +95,23 @@ function showTwoDoorsRoom() {
 // Function to prompt the player to choose a direction using enquirer
 async function chooseDirection() {
   const prompt = new Select({
-    name: 'direction',
-    message: 'ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ！！！',
-    choices: ['  ＬＥＦＴ ', ' ＲＥＩＧＨＴ']
+    name: "direction",
+    message: "  ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ ！！！",
+    choices: ["  ＬＥＦＴ", "  ＲＥＩＧＨＴ"],
   });
 
   try {
     const answer = await prompt.run();
 
-    if (answer === 'Left') {
+    if (answer === "Left") {
       console.log(chalk.yellow("\nYou head through the Left door..."));
       // Add your logic for the left door here
-    } else if (answer === 'Right') {
+    } else if (answer === "Right") {
       console.log(chalk.yellow("\nYou head through the Right door..."));
       // Add your logic for the right door here
     }
   } catch (error) {
-    console.log(chalk.red('Error with enquirer:', error));
+    console.log(chalk.red("Error with enquirer:", error));
   }
 }
 
