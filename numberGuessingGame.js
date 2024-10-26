@@ -45,7 +45,7 @@ function playNumberGuessingGame() {
       Ƭᕼᕮ ↁ〇〇ᖇ ⋃Ɲし〇ᙅ𐌊⟆, ᗩƝↁ Ⴤ〇⋃ ᑭᖇ〇ᑕᕮᕮↁ Ƭ〇 Ƭᕼᕮ ƝᕮⲬƬ ↁ〇〇ᖇ...`)
       );
       guessedCorrectly = true;
-      // Add code here to proceed to the next part of the dungeon if needed
+      return true; // Indicate success
     } else if (guess < targetNumber) {
       console.log(chalk.bold.red("\n      Ƭ〇〇 し〇ᗯ❗ ƬᖇႸ ᎯɢᎯ⫯ﬡ."));
     } else {
@@ -54,9 +54,20 @@ function playNumberGuessingGame() {
   }
 
   if (!guessedCorrectly) {
-    console.log(chalk.red("      ᗯᏒOƝG. ㆜ԋҽ ԃσσɾ ɾҽⲙαιɳട ɬσ𝛓ƙҽԃ."));
-    // Add any additional consequence or option to retry, if desired
+    console.log(
+      chalk.red(`    
+        ██████████████████████████████████▀█████
+        █▄─█▀▀▀█─▄█▄─▄▄▀█─▄▄─█▄─▀█▄─▄█─▄▄▄▄█████
+        ██─█─█─█─███─▄─▄█─██─██─█▄▀─██─██▄─█░░██
+        ▀▀▄▄▄▀▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▄▄▀▀
+
+      Ƭᕼᕮ ↁ〇〇ᖇ ᖇᕮⲘᗩᓰƝ⟆ し〇ᑕ𐌊ᕮᗪ.`)
+    );
   }
+  console.log(
+    chalk.red("\nYou failed to guess the number. The door remains locked.")
+  );
+  return false; // Indicate failure
 }
 
 module.exports = playNumberGuessingGame;

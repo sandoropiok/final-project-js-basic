@@ -123,14 +123,22 @@ function chooseDirection() {
             "\n      𝙏𝙝𝙚𝙧𝙚❜𝙨 𝙖 𝙣𝙤𝙩𝙚 𝙤𝙣 𝙩𝙝𝙚 𝙙𝙤𝙤𝙧: ❜𝙏𝙤 𝙤𝙥𝙚𝙣 𝙩𝙝𝙞𝙨 𝙙𝙤𝙤𝙧, 𝙮𝙤𝙪 𝙣𝙚𝙚𝙙 𝙩𝙤 𝙜𝙪𝙚𝙨𝙨 𝙩𝙝𝙚 𝙘𝙤𝙧𝙧𝙚𝙘𝙩 𝙣𝙪𝙢𝙗𝙚𝙧...❜"
           )
         );
-        playNumberGuessingGame(); // Call the number guessing game
+        const success = playNumberGuessingGame(); // Call the number guessing game
+        if (!success) {
+          console.log(chalk.red("\nYou can try the other door..."));
+          chooseDirection();
+        }
       } else if (answer === "  ＲＥＩＧＨＴ") {
         console.log(
           chalk.yellow(
             "\n      𝗧𝗵𝗲𝗿𝗲❜𝘀 𝗮 𝗿𝗶𝗱𝗱𝗹𝗲 𝗼𝗻 𝘁𝗵𝗲 𝗱𝗼𝗼𝗿: ❜𝗧𝗼 𝗼𝗽𝗲𝗻 𝘁𝗵𝗶𝘀 𝗱𝗼𝗼𝗿, 𝗮𝗻𝘀𝘄𝗲𝗿 𝘁𝗵𝗲 𝗳𝗼𝗹𝗹𝗼𝘄𝗶𝗻𝗴...❜"
           )
         );
-        riddleChallenge(); // Call the riddle challenge for the Right door
+        const success = riddleChallenge(); // Call the riddle challenge for the Right door
+        if (!success) {
+          console.log(chalk.red("\nYou can try the other door..."));
+          chooseDirection(); // Retry if failed
+        }
       }
     })
     .catch((error) => {

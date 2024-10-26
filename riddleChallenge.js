@@ -12,10 +12,10 @@ function riddleChallenge() {
 
   if (answer === 'echo') {
     console.log(chalk.green("      Correct! The door unlocks and you proceed to the next room."));
-    // Optionally, add code to proceed to the next room
+    return true; // Indicate success
   } else {
     console.log(chalk.red("      Wrong answer! The door remains locked."));
-    // Optionally, prompt them to try again or handle a failure outcome
+    return false; // Indicate failure
   }
 }
 
