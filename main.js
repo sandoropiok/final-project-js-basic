@@ -120,7 +120,7 @@ function chooseDirection() {
       if (answer === "  ＬＥＦＴ") {
         console.log(
           chalk.yellow(
-            "\n      𝙏𝙝𝙚𝙧𝙚❜𝙨 𝙖 𝙣𝙤𝙩𝙚 𝙤𝙣 𝙩𝙝𝙚 𝙙𝙤𝙤𝙧: ❜𝙏𝙤 𝙤𝙥𝙚𝙣 𝙩𝙝𝙞𝙨 𝙙𝙤𝙤𝙧, 𝙮𝙤𝙪 𝙣𝙚𝙚𝙙 𝙩𝙤 𝙜𝙪𝙚𝙨𝙨 𝙩𝙝𝙚 𝙘𝙤𝙧𝙧𝙚𝙘𝙩 𝙣𝙪𝙢𝙗𝙚𝙧...❜"
+            `\n      𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚗𝚘𝚝𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚢𝚘𝚞 𝚗𝚎𝚎𝚍 𝚝𝚘 𝚐𝚞𝚎𝚜𝚜 𝚝𝚑𝚎 𝚌𝚘𝚛𝚛𝚎𝚌𝚝 𝚗𝚞𝚖𝚋𝚎𝚛...`
           )
         );
         const success = playNumberGuessingGame(); // Call the number guessing game
@@ -131,7 +131,7 @@ function chooseDirection() {
       } else if (answer === "  ＲＥＩＧＨＴ") {
         console.log(
           chalk.yellow(
-            "\n      𝗧𝗵𝗲𝗿𝗲❜𝘀 𝗮 𝗿𝗶𝗱𝗱𝗹𝗲 𝗼𝗻 𝘁𝗵𝗲 𝗱𝗼𝗼𝗿: ❜𝗧𝗼 𝗼𝗽𝗲𝗻 𝘁𝗵𝗶𝘀 𝗱𝗼𝗼𝗿, 𝗮𝗻𝘀𝘄𝗲𝗿 𝘁𝗵𝗲 𝗳𝗼𝗹𝗹𝗼𝘄𝗶𝗻𝗴...❜"
+            `\n      𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚛𝚒𝚍𝚍𝚕𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚊𝚗𝚜𝚠𝚎𝚛 𝚝𝚑𝚎 𝚏𝚘𝚕𝚕𝚘𝚠𝚒𝚗𝚐...`
           )
         );
         const success = riddleChallenge(); // Call the riddle challenge for the Right door
