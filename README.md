@@ -8,28 +8,28 @@
 
 - [𝕆𝕧𝕖𝕣𝕧𝕚𝕨](#overview)
   - [𝔹𝕦𝕚𝕝𝕥 𝕨𝕚𝕥𝕙](#built-with)
-  - [𝕃𝕚𝕟𝕜𝕤](#links)
+   - [𝕃𝕚𝕟𝕜𝕤](#links)
   - [𝕊𝕔𝕣𝕖𝕖𝕟𝕤𝕙𝕠𝕥](#screenshot)
 
 ## 𝕆𝕧𝕖𝕣𝕧𝕚𝕨
 
 ### 𝔹𝕦𝕚𝕝𝕥 𝕨𝕚𝕥𝕙
 
-This project was built using a variety of technologies and tools, each playing a crucial role in different aspects of development:
+𝚃𝚑𝚒𝚜 𝚙𝚛𝚘𝚓𝚎𝚌𝚝 𝚠𝚊𝚜 𝚋𝚞𝚒𝚕𝚝 𝚞𝚜𝚒𝚗𝚐 𝚊 𝚟𝚊𝚛𝚒𝚎𝚝𝚢 𝚘𝚏 𝚝𝚎𝚌𝚑𝚗𝚘𝚕𝚘𝚐𝚒𝚎𝚜 𝚊𝚗𝚍 𝚝𝚘𝚘𝚕𝚜, 𝚎𝚊𝚌𝚑 𝚙𝚕𝚊𝚢𝚒𝚗𝚐 𝚊 𝚌𝚛𝚞𝚌𝚒𝚊𝚕 𝚛𝚘𝚕𝚎 𝚒𝚗 𝚍𝚒𝚏𝚏𝚎𝚛𝚎𝚗𝚝 𝚊𝚜𝚙𝚎𝚌𝚝𝚜 𝚘𝚏 𝚍𝚎𝚟𝚎𝚕𝚘𝚙𝚖𝚎𝚗𝚝:
 
-- ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) **- JavaScript was used to structure and implement the game's core logic.**
-- ![Nodejs](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) **- Node.js allowed the integration of helpful libraries such as `readline-sync` for user input and `chalk` for enhancing terminal output with colors.**
-- ![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white) **- npm was used to manage and install necessary Node.js packages, making dependency management more efficient.**
-- ![ChatGPT](https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white) **- ChatGPT provided guidance and research insights during the development process.**
-- ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white) **- Markdown was used to document the project and create this `README.md` file.**
+- ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) **- 𝙹𝚊𝚟𝚊𝚂𝚌𝚛𝚒𝚙𝚝 𝚠𝚊𝚜 𝚞𝚜𝚎𝚍 𝚝𝚘 𝚜𝚝𝚛𝚞𝚌𝚝𝚞𝚛𝚎 𝚊𝚗𝚍 𝚒𝚖𝚙𝚕𝚎𝚖𝚎𝚗𝚝 𝚝𝚑𝚎 𝚐𝚊𝚖𝚎'𝚜 𝚌𝚘𝚛𝚎 𝚕𝚘𝚐𝚒𝚌.**
+- ![Nodejs](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) **- 𝙽𝚘𝚍𝚎.𝚓𝚜 𝚊𝚕𝚕𝚘𝚠𝚎𝚍 𝚝𝚑𝚎 𝚒𝚗𝚝𝚎𝚐𝚛𝚊𝚝𝚒𝚘𝚗 𝚘𝚏 𝚑𝚎𝚕𝚙𝚏𝚞𝚕 𝚕𝚒𝚋𝚛𝚊𝚛𝚒𝚎𝚜 𝚜𝚞𝚌𝚑 𝚊𝚜 `𝚛𝚎𝚊𝚍𝚕𝚒𝚗𝚎-𝚜𝚢𝚗𝚌` 𝚏𝚘𝚛 𝚞𝚜𝚎𝚛 𝚒𝚗𝚙𝚞𝚝 𝚊𝚗𝚍 `𝚌𝚑𝚊𝚕𝚔` 𝚏𝚘𝚛 𝚎𝚗𝚑𝚊𝚗𝚌𝚒𝚗𝚐 𝚝𝚎𝚛𝚖𝚒𝚗𝚊𝚕 𝚘𝚞𝚝𝚙𝚞𝚝 𝚠𝚒𝚝𝚑 𝚌𝚘𝚕𝚘𝚛𝚜.**
+- ![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white) **- 𝚗𝚙𝚖 𝚠𝚊𝚜 𝚞𝚜𝚎𝚍 𝚝𝚘 𝚖𝚊𝚗𝚊𝚐𝚎 𝚊𝚗𝚍 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 𝚗𝚎𝚌𝚎𝚜𝚜𝚊𝚛𝚢 𝙽𝚘𝚍𝚎.𝚓𝚜 𝚙𝚊𝚌𝚔𝚊𝚐𝚎𝚜, 𝚖𝚊𝚔𝚒𝚗𝚐 𝚍𝚎𝚙𝚎𝚗𝚍𝚎𝚗𝚌𝚢 𝚖𝚊𝚗𝚊𝚐𝚎𝚖𝚎𝚗𝚝 𝚖𝚘𝚛𝚎 𝚎𝚏𝚏𝚒𝚌𝚒𝚎𝚗𝚝.**
+- ![ChatGPT](https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white) **- 𝙲𝚑𝚊𝚝𝙶𝙿𝚃 𝚙𝚛𝚘𝚟𝚒𝚍𝚎𝚍 𝚐𝚞𝚒𝚍𝚊𝚗𝚌𝚎 𝚊𝚗𝚍 𝚛𝚎𝚜𝚎𝚊𝚛𝚌𝚑 𝚒𝚗𝚜𝚒𝚐𝚑𝚝𝚜 𝚍𝚞𝚛𝚒𝚗𝚐 𝚝𝚑𝚎 𝚍𝚎𝚟𝚎𝚕𝚘𝚙𝚖𝚎𝚗𝚝 𝚙𝚛𝚘𝚌𝚎𝚜𝚜.**
+- ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white) **- 𝙼𝚊𝚛𝚔𝚍𝚘𝚠𝚗 𝚠𝚊𝚜 𝚞𝚜𝚎𝚍 𝚝𝚘 𝚍𝚘𝚌𝚞𝚖𝚎𝚗𝚝 𝚝𝚑𝚎 𝚙𝚛𝚘𝚓𝚎𝚌𝚝 𝚊𝚗𝚍 𝚌𝚛𝚎𝚊𝚝𝚎 𝚝𝚑𝚒𝚜 `𝚁𝙴𝙰𝙳𝙼𝙴.𝚖𝚍` 𝚏𝚒𝚕𝚎.**
 
 
 
-### 𝕃𝕚𝕟𝕜𝕤
+#### 𝕃𝕚𝕟𝕜𝕤
 
-- **[𝗖𝗵𝗮𝘁𝗚𝗣𝗧 𝗯𝘆 𝗢𝗽𝗲𝗻𝗔𝗜](https://openai.com/chatgpt)** - Used for researching and gaining insights during the development process.
-- **[𝔸𝕊ℂ𝕀𝕀.𝕔𝕠.𝕦𝕜 (𝔸𝕟𝕚𝕞𝕒𝕥𝕖𝕕 𝔸𝕊ℂ𝕀𝕀 𝔸𝕣𝕥)](https://ascii.co.uk/animated/)** - Utilized for generating animated ASCII art to enhance the visual elements of the game.
-- **[Ⲣⲁⲧⲟꞅʝⲕ'Ϩ Ⲧⲉⲭⲧ ⲧⲟ ⲀϨⲤⲒⲒ Ⲁꞅⲧ Ꮆⲉⲛⲉꞅⲁⲧⲟꞅ](https://patorjk.com/software/taag/)** - A helpful tool used to create custom ASCII art designs for the game's title and other text elements.
-- **[ƑSყⲙßσɬട - Cσσɬ ㆜ҽχ𝜏 αɳԃ Sყⲙßσɬ Gҽɳҽɾα𝜏σɾ](https://fsymbols.com/generators/)** - Another tool used for generating stylish text and symbols for in-game use.
+- **[𝗖𝗵𝗮𝘁𝗚𝗣𝗧 𝗯𝘆 𝗢𝗽𝗲𝗻𝗔𝗜](https://openai.com/chatgpt)** - 𝚄𝚜𝚎𝚍 𝚏𝚘𝚛 𝚛𝚎𝚜𝚎𝚊𝚛𝚌𝚑𝚒𝚗𝚐 𝚊𝚗𝚍 𝚐𝚊𝚒𝚗𝚒𝚗𝚐 𝚒𝚗𝚜𝚒𝚐𝚑𝚝𝚜 𝚍𝚞𝚛𝚒𝚗𝚐 𝚝𝚑𝚎 𝚍𝚎𝚟𝚎𝚕𝚘𝚙𝚖𝚎𝚗𝚝 𝚙𝚛𝚘𝚌𝚎𝚜𝚜.
+- **[𝔸𝕊ℂ𝕀𝕀.𝕔𝕠.𝕦𝕜 (𝔸𝕟𝕚𝕞𝕒𝕥𝕖𝕕 𝔸𝕊ℂ𝕀𝕀 𝔸𝕣𝕥)](https://ascii.co.uk/animated/)** - 𝚄𝚝𝚒𝚕𝚒𝚣𝚎𝚍 𝚏𝚘𝚛 𝚐𝚎𝚗𝚎𝚛𝚊𝚝𝚒𝚗𝚐 𝚊𝚗𝚒𝚖𝚊𝚝𝚎𝚍 𝙰𝚂𝙲𝙸𝙸 𝚊𝚛𝚝 𝚝𝚘 𝚎𝚗𝚑𝚊𝚗𝚌𝚎 𝚝𝚑𝚎 𝚟𝚒𝚜𝚞𝚊𝚕 𝚎𝚕𝚎𝚖𝚎𝚗𝚝𝚜 𝚘𝚏 𝚝𝚑𝚎 𝚐𝚊𝚖𝚎.
+- **[Ⲣⲁⲧⲟꞅʝⲕ'Ϩ Ⲧⲉⲭⲧ ⲧⲟ ⲀϨⲤⲒⲒ Ⲁꞅⲧ Ꮆⲉⲛⲉꞅⲁⲧⲟꞅ](https://patorjk.com/software/taag/)** - 𝙰 𝚑𝚎𝚕𝚙𝚏𝚞𝚕 𝚝𝚘𝚘𝚕 𝚞𝚜𝚎𝚍 𝚝𝚘 𝚌𝚛𝚎𝚊𝚝𝚎 𝚌𝚞𝚜𝚝𝚘𝚖 𝙰𝚂𝙲𝙸𝙸 𝚊𝚛𝚝 𝚍𝚎𝚜𝚒𝚐𝚗𝚜 𝚏𝚘𝚛 𝚝𝚑𝚎 𝚐𝚊𝚖𝚎'𝚜 𝚝𝚒𝚝𝚕𝚎 𝚊𝚗𝚍 𝚘𝚝𝚑𝚎𝚛 𝚝𝚎𝚡𝚝 𝚎𝚕𝚎𝚖𝚎𝚗𝚝𝚜.
+- **[ƑSყⲙßσɬട - Cσσɬ ㆜ҽχ𝜏 αɳԃ Sყⲙßσɬ Gҽɳҽɾα𝜏σɾ](https://fsymbols.com/generators/)** - 𝙰𝚗𝚘𝚝𝚑𝚎𝚛 𝚝𝚘𝚘𝚕 𝚞𝚜𝚎𝚍 𝚏𝚘𝚛 𝚐𝚎𝚗𝚎𝚛𝚊𝚝𝚒𝚗𝚐 𝚜𝚝𝚢𝚕𝚒𝚜𝚑 𝚝𝚎𝚡𝚝 𝚊𝚗𝚍 𝚜𝚢𝚖𝚋𝚘𝚕𝚜 𝚏𝚘𝚛 𝚒𝚗-𝚐𝚊𝚖𝚎 𝚞𝚜𝚎.
 
 ### 𝕊𝕔𝕣𝕖𝕖𝕟𝕤𝕙𝕠𝕥
