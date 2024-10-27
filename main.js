@@ -146,6 +146,44 @@ function chooseDirection() {
     });
 }
 
+function nextDirection() {
+  const prompt = new Select({
+    name: "direction",
+    message: "  ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ ！！！",
+    choices: ["  ＬＥＦＴ", "  ＲＥＩＧＨＴ"],
+  });
+  prompt
+    .run()
+    .then((answer) => {
+      if (answer === "  ＬＥＦＴ") {
+        console.log(
+          chalk.yellow(
+            `\n      𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚗𝚘𝚝𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚢𝚘𝚞 𝚗𝚎𝚎𝚍 𝚝𝚘 𝚐𝚞𝚎𝚜𝚜 𝚝𝚑𝚎 𝚌𝚘𝚛𝚛𝚎𝚌𝚝 𝚗𝚞𝚖𝚋𝚎𝚛...`
+          )
+        );
+        const success = playNumberGuessingGame(); // Call the number guessing game
+        if (!success) {
+          console.log(chalk.red("\nYou can try the other door..."));
+          chooseDirection();
+        }
+      } else if (answer === "  ＲＥＩＧＨＴ") {
+        console.log(
+          chalk.yellow(
+            `\n      𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚛𝚒𝚍𝚍𝚕𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚊𝚗𝚜𝚠𝚎𝚛 𝚝𝚑𝚎 𝚏𝚘𝚕𝚕𝚘𝚠𝚒𝚗𝚐...`
+          )
+        );
+        const success = riddleChallenge(); // Call the riddle challenge for the Right door
+        if (!success) {
+          console.log(chalk.red("\nYou can try the other door..."));
+          chooseDirection(); // Retry if failed
+        }
+      }
+    })
+    .catch((error) => {
+      console.log(chalk.red("Error with enquirer:", error));
+    });
+}
+
 // Function to initiate the room and player choice
 function startDungeonSection() {
   showTwoDoorsRoom(); // Show the new room with two doors
