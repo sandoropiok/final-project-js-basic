@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const figlet = require("figlet");
 const { Select } = require("enquirer");
 
 function playTicTacToe() {
@@ -62,29 +63,30 @@ function playTicTacToe() {
   // Function to handle computer's turn
   function computerMove() {
     const availableMoves = getAvailableMoves();
-    if (availableMoves.length > 0) {
-      const move =
-        availableMoves[Math.floor(Math.random() * availableMoves.length)];
-      board[move] = computer;
-      console.log("ＧＵＡＲＤＩＡＮ ＣＨＯＯＳＥＳ ＰＯＳＩＴＩＯＮ： ", move + 1); // Display computer's move (1-indexed)
-      printBoard();
-    }
+    const move =
+      availableMoves[Math.floor(Math.random() * availableMoves.length)];
+    board[move] = computer;
+    console.log(chalk.yellowBright(
+      "ＧＵＡＲＤＩＡＮ ＣＨＯＯＳＥＳ ＰＯＳＩＴＩＯＮ： "),
+      move + 1
+    ); // Display computer's move (1-indexed)
+    printBoard();
   }
 
   // Main function to play the game
-  function playGame() {
+  async function playGame() {
     console.log("Welcome to Tic Tac Toe!");
     printBoard();
 
     const gameLoop = () => {
       // Player's turn
       const availableMoves = getAvailableMoves();
-
       const prompt = new Select({
         name: "position",
-        message: `ＰＬＡＹＥＲ ${player}， ＳＥＬＥＣＴ ＹＯＵ ＭＯＶＥ`,
+        message: chalk.cyanBright(`ＰＬＡＹＥＲ ${player}， ＳＥＬＥＣＴ ＹＯＵ ＭＯＶＥ`),
         choices: availableMoves.map((index) => ({
-          name: ` ＰＯＳＩＴＩＯＮ ${index + 1}`,
+          name: index.toString(),
+          message: ` ＰＯＳＩＴＩＯＮ ${index}`,
           value: index,
         })),
       });
@@ -94,10 +96,15 @@ function playTicTacToe() {
         .then((move) => {
           board[move] = player;
           printBoard();
-
           // Check if the player wins or the game is a draw
           if (checkWin(player)) {
-            console.log(`ＰＬＡＹＥＲ ${player} ＷＩＮＳ！`);
+            console.log(
+              chalk.green(`
+    █▀▀ █▀█ █▄░█ █▀▀ █▀█ ▄▀█ ▀█▀ █░█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█ █▀
+    █▄▄ █▄█ █░▀█ █▄█ █▀▄ █▀█ ░█░ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█ ▄█
+   
+    ＰＬＡＹＥＲ ${player} ＷＩＮＳ！`)
+            );
             return;
           } else if (checkDraw()) {
             console.log("It's a draw!");
@@ -109,7 +116,13 @@ function playTicTacToe() {
 
           // Check if the computer wins or the game is a draw
           if (checkWin(computer)) {
-            console.log(`ＧＵＡＲＤＩＡＮ (${computer}) ＷＩＮＳ！`);
+            console.log(
+              chalk.red(`
+    █▄█ █▀█ █░█   █▀▀ ▄▀█ █ █░░ █▀▄
+    ░█░ █▄█ █▄█   █▀░ █▀█ █ █▄▄ █▄▀
+  
+    ＧＵＡＲＤＩＡＮ (${computer}) ＷＩＮＳ！`)
+            );
             return;
           } else if (checkDraw()) {
             console.log("It's a draw!");
