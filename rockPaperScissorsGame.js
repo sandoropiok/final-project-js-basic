@@ -38,9 +38,11 @@ function playRockPaperScissors() {
         );
         return playRockPaperScissors();
       } else if (
-        (playerChoice === " ＲＯＣＫ" && computerChoice === " ＳＣＩＳＳＯＲＳ") ||
+        (playerChoice === " ＲＯＣＫ" &&
+          computerChoice === " ＳＣＩＳＳＯＲＳ") ||
         (playerChoice === " ＰＡＰＰＥＲ" && computerChoice === " ＲＯＣＫ") ||
-        (playerChoice === " ＳＣＩＳＳＯＲＳ" && computerChoice === " ＰＡＰＰＥＲ")
+        (playerChoice === " ＳＣＩＳＳＯＲＳ" &&
+          computerChoice === " ＰＡＰＰＥＲ")
       ) {
         console.log(
           chalk.green(`

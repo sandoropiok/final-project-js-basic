@@ -66,9 +66,9 @@ let username = readline.question(
 console.log(
   chalk.yellowBright(
     figlet.textSync(`\nWelcome, ${username.toUpperCase()}`, {
-      font: 'Double',  // Change this to any figlet font you like
-      horizontalLayout: 'default',
-      verticalLayout: 'default',
+      font: "Double", // Change this to any figlet font you like
+      horizontalLayout: "default",
+      verticalLayout: "default",
       width: 180,
       whitespaceBreak: true,
     })
@@ -82,17 +82,17 @@ function showTwoDoorsRoom() {
       \\                                                             /
        \\ _________________________________________________________ /
         |     -_-                                             _-  |
-        |_-_- _                                         -_- _-   -|     
-        |          LEFT             _-  _--       ＲＥＩＧＨＴ    | 
+        |_-_- _                                         -_- _-   -|
+        |          LEFT             _-  _--       ＲＥＩＧＨＴ    |
         |      _____________         ,         _____________      |
         |     / /███████████\\        (        / /███████████\\     |
-        |    / /█████████████\\       )       / /█████████████\\    |          
+        |    / /█████████████\\       )       / /█████████████\\    |
         |   / /███████████████\\     'U'     / /███████████████\\   |
         |  /  |████▌▓▓▓▓▓▓▐████\\ o   T   o /  |████▌▓▓▓▓▓▓▐████\\  |
         |  |  |████▌▓▓▓▓▓▓▐████|  .  |  .  |  |████▌▓▓▓▓▓▓▐████|  |
         |  |  |████████████████|   . | .   |  |████████████████|  |
         |  |  |█▌#▐████████████|    .|.    |  |█▌#▐████████████|  |
-        |  |  |████████████████|     |     |  |████████████████|  |  
+        |  |  |████████████████|     |     |  |████████████████|  |
         |  |  |████████████████|     !     |  |████████████████|  |
         |  |  |████████████████|        -  |  |████████████████|  |
         |  |  |████████████████|        -  |  |████████████████|  |
@@ -211,15 +211,19 @@ function secondRoom() {
   const prompt = new Select({
     name: "secondRoomChoice",
     message: "  ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ ！！！",
-    choices: ["  ＬＥＦＴ", "  ＲＥＩＧＨＴ"],
+    choices: ["  ＷＥＳＴ ＤＯＯＲ", "  ＥＡＳＴ ＤＯＯＲ"],
   });
   prompt
     .run()
     .then((answer) => {
-      if (answer === "  ＬＥＦＴ") {
+      if (answer === "  ＷＥＳＴ ＤＯＯＲ") {
         if (playRockPaperScissors()) {
-          console.log(chalk.green("\nYou unlock the left door and move to the next room..."));
-          const  success = playRockPaperScissors();
+          console.log(
+            chalk.green(
+              "\nYou unlock the left door and move to the next room..."
+            )
+          );
+          const success = playRockPaperScissors();
           if (success) {
             thirdRoom(); // Call the next room
           } else {
@@ -233,10 +237,107 @@ function secondRoom() {
             secondRoom();
           }
         }
-      } else if (answer === "  ＲＥＩＧＨＴ") {
+      } else if (answer === "  ＥＡＳＴ ＤＯＯＲ") {
         if (playTicTacToe()) {
-          console.log(chalk.green("\nYou unlock the right door and move to the next room..."));
-          const  success = playRockPaperScissors();
+          console.log(
+            chalk.green(
+              "\nYou unlock the right door and move to the next room..."
+            )
+          );
+          const success = playRockPaperScissors();
+          if (success) {
+            thirdRoom(); // Call the next room
+          } else {
+            console.log(
+              chalk.red(`
+          ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
+           ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
+           ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
+          `)
+            );
+            secondRoom();
+          }
+        }
+      }
+    })
+    .catch((error) => {
+      console.log(chalk.red("Error with enquirer:", error));
+    });
+}
+
+function thirdRoom() {
+  let lastRoomArt = `
+     \\                                                              /
+      \\                                                            /
+       \\ ________________________________________________________ /
+        |_                                                       _|
+        |_                                                       _|
+        |_                                                       _|
+        |_         ___________________________________           _|
+        |_         _|* * * * * * * * * * * * * * * *|_           _|
+        |_         _|*      .----------------.     *|_           _|
+        |_         _|*     | .--------------. |    *|_           _|
+        |_         _|*     | |     ____     | |    *|_           _|
+        |_         _|*     | |   .' || '.   | |    *|_           _|
+        |_         _|*     | |  /  .--.  \\  | |    *|_           _|
+        |_         _|*     | |  |¬|    |¬|  | |    *|_           _|
+        |_         _|*     | |  \\  '--'  /  | |    *|_           _|
+        |_         _|*     | |   '._!!_.'   | |    *|_           _|
+        |_         _|*     | |              | |    *|_           _|
+        |_         _|*     | '--------------' |    *|_           _|
+        |_         _|*      '----------------'     *|_           _|
+        |_         _|*                             *|_           _|
+        |___________|*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*|_____________|
+       /                                                           \\
+      /                                                             \\
+     /                                                               \\
+`;
+  console.log(chalk.greenBright(lastRoomArt));
+  console.log(
+    chalk.greenBright(`
+┏┳┓┓┏┳┏┓  ┳┏┓  ┏┳┓┓┏┏┓  ┓ ┏┓┏┓┏┳┓  ┳┓┏┓┏┓┳┳┓  ┓ ┏┳┏┳┓┓┏  ┏┳┓┓ ┏┏┓  ┓ ┏┓┏┓┓┏┓ ╻╻╻
+ ┃ ┣┫┃┗┓  ┃┗┓   ┃ ┣┫┣   ┃ ┣┫┗┓ ┃   ┣┫┃┃┃┃┃┃┃  ┃┃┃┃ ┃ ┣┫   ┃ ┃┃┃┃┃  ┃ ┃┃┃ ┃┫  ┃┃┃
+ ┻ ┛┗┻┗┛  ┻┗┛   ┻ ┛┗┗┛  ┗┛┛┗┗┛ ┻   ┛┗┗┛┗┛┛ ┗  ┗┻┛┻ ┻ ┛┗   ┻ ┗┻┛┗┛  ┗┛┗┛┗┛┛┗┛ •••   
+`)
+  );
+
+  const prompt = new Select({
+    name: "thirdRoomChoice",
+    message: "  ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ ＬＯＣＫ ！！！",
+    choices: ["  ＦＩＲＳＴ ＬＯＣＫ", "  ＳＥＣＯＮＤ ＬＯＣＫ"],
+  });
+  prompt
+    .run()
+    .then((answer) => {
+      if (answer === "  ＦＩＲＳＴ ＬＯＣＫ") {
+        if (playRockPaperScissors()) {
+          console.log(
+            chalk.green(
+              "\nYou unlock the left door and move to the next room..."
+            )
+          );
+          const success = playRockPaperScissors();
+          if (success) {
+            thirdRoom(); // Call the next room
+          } else {
+            console.log(
+              chalk.red(`
+          ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
+           ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
+           ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
+          `)
+            );
+            secondRoom();
+          }
+        }
+      } else if (answer === "  ＳＥＣＯＮＤ ＬＯＣＫ") {
+        if (playTicTacToe()) {
+          console.log(
+            chalk.green(
+              "\nYou unlock the right door and move to the next room..."
+            )
+          );
+          const success = playRockPaperScissors();
           if (success) {
             thirdRoom(); // Call the next room
           } else {
@@ -259,8 +360,8 @@ function secondRoom() {
 
 // Function to initiate the room and player choice
 function startDungeonSection() {
-  showTwoDoorsRoom()
-  firstRoom(); 
+  showTwoDoorsRoom();
+  firstRoom();
 }
 
 startDungeonSection();

@@ -66,8 +66,8 @@ function playTicTacToe() {
     const move =
       availableMoves[Math.floor(Math.random() * availableMoves.length)];
     board[move] = computer;
-    console.log(chalk.yellowBright(
-      "ＧＵＡＲＤＩＡＮ ＣＨＯＯＳＥＳ ＰＯＳＩＴＩＯＮ： "),
+    console.log(
+      chalk.yellowBright("ＧＵＡＲＤＩＡＮ ＣＨＯＯＳＥＳ ＰＯＳＩＴＩＯＮ： "),
       move + 1
     ); // Display computer's move (1-indexed)
     printBoard();
@@ -83,7 +83,9 @@ function playTicTacToe() {
       const availableMoves = getAvailableMoves();
       const prompt = new Select({
         name: "position",
-        message: chalk.cyanBright(`ＰＬＡＹＥＲ ${player}， ＳＥＬＥＣＴ ＹＯＵ ＭＯＶＥ`),
+        message: chalk.cyanBright(
+          `ＰＬＡＹＥＲ ${player}， ＳＥＬＥＣＴ ＹＯＵ ＭＯＶＥ`
+        ),
         choices: availableMoves.map((index) => ({
           name: index.toString(),
           message: ` ＰＯＳＩＴＩＯＮ ${index}`,

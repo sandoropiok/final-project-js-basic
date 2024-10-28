@@ -64,7 +64,9 @@ function playNumberGuessingGame() {
     );
   }
   console.log(
-    chalk.red("\n      Ⴤ〇⋃ Բᗩᓰしᕮↁ Ƭ〇 Ꮆ⋃ᕮ⟆⟆ Ƭᕼᕮ ƝᑌⲘᗷᕮᖇ. Ƭᕼᕮ ↁ〇〇ᖇ ᖇᕮⲘᗩᓰƝ⟆ し〇ᑕ𐌊ᕮↁ.")
+    chalk.red(
+      "\n      Ⴤ〇⋃ Բᗩᓰしᕮↁ Ƭ〇 Ꮆ⋃ᕮ⟆⟆ Ƭᕼᕮ ƝᑌⲘᗷᕮᖇ. Ƭᕼᕮ ↁ〇〇ᖇ ᖇᕮⲘᗩᓰƝ⟆ し〇ᑕ𐌊ᕮↁ."
+    )
   );
   return false; // Indicate failure
 }
