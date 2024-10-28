@@ -1,54 +1,72 @@
-const readline = require("readline-sync");
+const { Select } = require("enquirer");
 const chalk = require("chalk");
 
 function playRockPaperScissors() {
-  const choices = ["rock", "paper", "scissors"];
+  const choices = [" ＲＯＣＫ", "  ＰＡＰＰＥＲ", "scissors"];
   const computerChoice = choices[Math.floor(Math.random() * 3)];
 
   console.log(
     chalk.yellow(
-      "\nTo proceed, beat the dungeon guard in Rock, Paper, Scissors!"
+      "\n   ＴＯ ＰＲＯＣＥＥＤ， ＢＥＡＴ ＴＨＥ ＤＵＮＧＥＯＮ ＧＵＡＲＤ ＩＮ ＲＯＣＫ， ＰＡＰＥＲ， ＳＣＩＳＳＯＲＳ！"
     )
   );
-  const playerChoice = readline
-    .question(chalk.cyan("Choose rock, paper, or scissors: "))
-    .toLowerCase();
+  const prompt = new Select({
+    name: "playerChoice",
+    message: chalk.cyan(
+      `\n      ＣＨＯＯＳＥ ＲＯＣＫ， ＰＡＰＥＲ ＯＲ ＳＣＩＳＳＯＲＳ： `
+    ),
+    choices: choices,
+  });
 
-  if (playerChoice === computerChoice) {
-    console.log(
-      chalk.yellow(`
+  prompt
+    .run()
+    .then((playerChoice) => {
+      console.log(
+        chalk.yellow(
+          `\n      You chose ${playerChoice}, and the guard chose ${computerChoice}.`
+        )
+      );
+
+      if (playerChoice === computerChoice) {
+        console.log(
+          chalk.yellow(`
           ┳┏┳┓╹┏┓  ┏┓  ┏┳┓┳┏┓╻  ┏┳┓┳┓┓┏  ┏┓┏┓┏┓┳┳┓ 
           ┃ ┃  ┗┓  ┣┫   ┃ ┃┣ ┃   ┃ ┣┫┗┫  ┣┫┃┓┣┫┃┃┃ 
           ┻ ┻  ┗┛  ┛┗   ┻ ┻┗┛•   ┻ ┛┗┗┛  ┛┗┗┛┛┗┻┛┗•
-                                         `)
-    );
-    return playRockPaperScissors();
-  } else if (
-    (playerChoice === "rock" && computerChoice === "scissors") ||
-    (playerChoice === "paper" && computerChoice === "rock") ||
-    (playerChoice === "scissors" && computerChoice === "paper")
-  ) {
-    console.log(
-      chalk.green(`
+        
+      Ⴤ〇ᑌ ᕼᗩ⋎ᕮ 〇Ɲᕮ Ⲙ〇ᖇᕮ ᙅᕼᗩƝᑕᕮ❗`)
+        );
+        return playRockPaperScissors();
+      } else if (
+        (playerChoice === " ＲＯＣＫ" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === " ＲＯＣＫ") ||
+        (playerChoice === "scissors" && computerChoice === "paper")
+      ) {
+        console.log(
+          chalk.green(`
           ░█──░█ ░█▀▀▀█ ░█─░█ 　 ░█──░█ ▀█▀ ░█▄─░█ █ 
           ░█▄▄▄█ ░█──░█ ░█─░█ 　 ░█░█░█ ░█─ ░█░█░█ ▀ 
           ──░█── ░█▄▄▄█ ─▀▄▄▀ 　 ░█▄▀▄█ ▄█▄ ░█──▀█ ▄
 
       Ƭᕼᕮ ↁ〇〇ᖇ ⋃Ɲし〇ᙅ𐌊⟆, Ꮆ〇〇ᗪ し⋃ᑕ𐌊 ᓮƝ ƝᕮⲬƬ ᖇ〇〇Ⲙ❗`)
-    );
-    return true;
-  } else {
-    console.log(
-      chalk.red(` 
+        );
+        return true;
+      } else {
+        console.log(
+          chalk.red(` 
           ██████████████████████████████████████████████
           █▄─█─▄█─▄▄─█▄─██─▄███▄─▄███─▄▄─█─▄▄▄▄█─▄─▄─█░█
           ██▄─▄██─██─██─██─█████─██▀█─██─█▄▄▄▄─███─███▄█
           ▀▀▄▄▄▀▀▄▄▄▄▀▀▄▄▄▄▀▀▀▀▄▄▄▄▄▀▄▄▄▄▀▄▄▄▄▄▀▀▄▄▄▀▀▄▀
         
       Ƭᕼᕮ ↁ〇〇ᖇ し〇ᑕ𐌊ᕮᗪ Բ〇ᖇᕮ⋎ᕮᖇ❗`)
-    );
-    return playRockPaperScissors();
-  }
+        );
+        return playRockPaperScissors();
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
 }
 
 module.exports = playRockPaperScissors;

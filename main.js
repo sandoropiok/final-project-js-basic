@@ -218,22 +218,37 @@ function secondRoom() {
     .then((answer) => {
       if (answer === "  ＬＥＦＴ") {
         if (playRockPaperScissors()) {
-          console.log(
-            chalk.green(
-              "\nYou unlock the left door and move to the next room..."
-            )
-          );
-          roomThree(); // Proceed to Room 3
-          secondRoom();
+          console.log(chalk.green("\nYou unlock the left door and move to the next room..."));
+          const  success = playRockPaperScissors();
+          if (success) {
+            thirdRoom(); // Call the next room
+          } else {
+            console.log(
+              chalk.red(`
+          ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
+           ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
+           ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
+          `)
+            );
+            secondRoom();
+          }
         }
       } else if (answer === "  ＲＥＩＧＨＴ") {
         if (playTicTacToe()) {
-          console.log(
-            chalk.green(
-              "\nYou unlock the right door and move to the next room..."
-            )
-          );
-          roomThree(); // Proceed to Room 3
+          console.log(chalk.green("\nYou unlock the right door and move to the next room..."));
+          const  success = playRockPaperScissors();
+          if (success) {
+            thirdRoom(); // Call the next room
+          } else {
+            console.log(
+              chalk.red(`
+          ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
+           ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
+           ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
+          `)
+            );
+            secondRoom();
+          }
         }
       }
     })
@@ -244,8 +259,8 @@ function secondRoom() {
 
 // Function to initiate the room and player choice
 function startDungeonSection() {
-  showTwoDoorsRoom(); // Show the new room with two doors
-  firstRoom(); // Ask the player to choose between Left and Right
+  showTwoDoorsRoom()
+  firstRoom(); 
 }
 
 startDungeonSection();
