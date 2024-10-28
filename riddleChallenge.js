@@ -1,4 +1,3 @@
-// riddleChallenge.js
 const readline = require("readline-sync");
 const chalk = require("chalk");
 

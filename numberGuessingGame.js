@@ -1,4 +1,3 @@
-// numberGuessingGame.js
 const readlineSync = require("readline-sync");
 const chalk = require("chalk");
 

@@ -1,18 +1,23 @@
 const chalk = require("chalk");
-const prompt = require("prompt-sync")({ sigint: true });
+const { Select } = require("enquirer");
 
 function playTicTacToe() {
-  // Simplified implementation of Tic-Tac-Toe, where player must win or tie to proceed
+  // Welcome message
   console.log(
-    chalk.greenBright(
-      "\nYou must defeat the dungeon guard at Tic-Tac-Toe to proceed!"
-    )
+    chalk.greenBright(`
+  ╦ ╦┌─┐┬ ┬  ┌┬┐┬ ┬┌─┐┌┬┐  ┌┬┐┌─┐┌─┐┌─┐┌─┐┌┬┐  ┌┬┐┬ ┬┌─┐  ┌┬┐┬ ┬┌┐┌┌─┐┌─┐┌─┐┌┐┌  ┌─┐┬ ┬┌─┐┬─┐┌┬┐  
+  ╚╦╝│ ││ │  ││││ │└─┐ │    ││├┤ ├┤ ├┤ ├─┤ │    │ ├─┤├┤    │││ │││││ ┬├┤ │ ││││  │ ┬│ │├─┤├┬┘ ││  
+   ╩ └─┘└─┘  ┴ ┴└─┘└─┘ ┴   ─┴┘└─┘└  └─┘┴ ┴ ┴    ┴ ┴ ┴└─┘  ─┴┘└─┘┘└┘└─┘└─┘└─┘┘└┘  └─┘└─┘┴ ┴┴└──┴┘ 
+             ┌─┐┌┬┐  ╔╦╗┬┌─┐  ╔╦╗┌─┐┌─┐  ╔╦╗┌─┐┌─┐  ┌┬┐┌─┐  ┌─┐┬─┐┌─┐┌─┐┌─┐┌─┐┌┬┐┬
+             ├─┤ │    ║ ││  ───║ ├─┤│  ───║ │ │├┤    │ │ │  ├─┘├┬┘│ ││  ├┤ ├┤  │││
+             ┴ ┴ ┴    ╩ ┴└─┘   ╩ ┴ ┴└─┘   ╩ └─┘└─┘   ┴ └─┘  ┴  ┴└─└─┘└─┘└─┘└─┘─┴┘o 
+`)
   );
 
   // Initialize the board with empty spaces
   let board = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
-  let player = "X"; // Player
-  let computer = "O"; // Computer
+  const player = "X"; // Player
+  const computer = "O"; // Computer
 
   // Display the board in the console
   function printBoard() {
@@ -57,66 +62,72 @@ function playTicTacToe() {
   // Function to handle computer's turn
   function computerMove() {
     const availableMoves = getAvailableMoves();
-    const move =
-      availableMoves[Math.floor(Math.random() * availableMoves.length)];
-    board[move] = computer;
-    console.log("Computer chooses position:", move);
-    printBoard();
+    if (availableMoves.length > 0) {
+      const move =
+        availableMoves[Math.floor(Math.random() * availableMoves.length)];
+      board[move] = computer;
+      console.log("ＧＵＡＲＤＩＡＮ ＣＨＯＯＳＥＳ ＰＯＳＩＴＩＯＮ： ", move + 1); // Display computer's move (1-indexed)
+      printBoard();
+    }
   }
 
   // Main function to play the game
-  async function playGame() {
+  function playGame() {
     console.log("Welcome to Tic Tac Toe!");
     printBoard();
 
-    while (true) {
+    const gameLoop = () => {
       // Player's turn
       const availableMoves = getAvailableMoves();
+
       const prompt = new Select({
         name: "position",
-        message: `Player ${player}, select your move`,
+        message: `ＰＬＡＹＥＲ ${player}， ＳＥＬＥＣＴ ＹＯＵ ＭＯＶＥ`,
         choices: availableMoves.map((index) => ({
-          name: index.toString(),
-          message: `Cell ${index}`,
+          name: ` ＰＯＳＩＴＩＯＮ ${index + 1}`,
           value: index,
         })),
       });
 
-      try {
-        const move = await prompt.run();
-        board[move] = player;
-        printBoard();
+      prompt
+        .run()
+        .then((move) => {
+          board[move] = player;
+          printBoard();
 
-        // Check if the player wins or the game is a draw
-        if (checkWin(player)) {
-          console.log(`Player ${player} wins!`);
-          break;
-        } else if (checkDraw()) {
-          console.log("It's a draw!");
-          break;
-        }
+          // Check if the player wins or the game is a draw
+          if (checkWin(player)) {
+            console.log(`ＰＬＡＹＥＲ ${player} ＷＩＮＳ！`);
+            return;
+          } else if (checkDraw()) {
+            console.log("It's a draw!");
+            return;
+          }
 
-        // Computer's turn
-        computerMove();
+          // Computer's turn
+          computerMove();
 
-        // Check if the computer wins or the game is a draw
-        if (checkWin(computer)) {
-          console.log(`Computer (${computer}) wins!`);
-          break;
-        } else if (checkDraw()) {
-          console.log("It's a draw!");
-          break;
-        }
-      } catch (error) {
-        console.error("An error occurred:", error);
-        break;
-      }
-    }
+          // Check if the computer wins or the game is a draw
+          if (checkWin(computer)) {
+            console.log(`ＧＵＡＲＤＩＡＮ (${computer}) ＷＩＮＳ！`);
+            return;
+          } else if (checkDraw()) {
+            console.log("It's a draw!");
+            return;
+          }
+
+          // Continue the game loop
+          gameLoop();
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+        });
+    };
+
+    gameLoop(); // Start the game loop
   }
 
-  // Placeholder: Assume player won for demo purposes
-  //   console.log(chalk.green("You win! The door unlocks."));
-  //   return true;
+  playGame(); // Call the playGame function to start
 }
 
 module.exports = playTicTacToe;

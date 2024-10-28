@@ -2,7 +2,7 @@ const { Select } = require("enquirer");
 const chalk = require("chalk");
 
 function playRockPaperScissors() {
-  const choices = [" ＲＯＣＫ", "  ＰＡＰＰＥＲ", "scissors"];
+  const choices = [" ＲＯＣＫ", " ＰＡＰＰＥＲ", " ＳＣＩＳＳＯＲＳ"];
   const computerChoice = choices[Math.floor(Math.random() * 3)];
 
   console.log(
@@ -23,7 +23,7 @@ function playRockPaperScissors() {
     .then((playerChoice) => {
       console.log(
         chalk.yellow(
-          `\n      You chose ${playerChoice}, and the guard chose ${computerChoice}.`
+          `\n      ＹＯＵ ＣＨＯＳＥ ${playerChoice}，ＡＮＤ ＴＨＥ ＧＵＡＲＤ ＣＨＯＳＥ ${computerChoice}.`
         )
       );
 
@@ -38,9 +38,9 @@ function playRockPaperScissors() {
         );
         return playRockPaperScissors();
       } else if (
-        (playerChoice === " ＲＯＣＫ" && computerChoice === "scissors") ||
-        (playerChoice === "paper" && computerChoice === " ＲＯＣＫ") ||
-        (playerChoice === "scissors" && computerChoice === "paper")
+        (playerChoice === " ＲＯＣＫ" && computerChoice === " ＳＣＩＳＳＯＲＳ") ||
+        (playerChoice === " ＰＡＰＰＥＲ" && computerChoice === " ＲＯＣＫ") ||
+        (playerChoice === " ＳＣＩＳＳＯＲＳ" && computerChoice === " ＰＡＰＰＥＲ")
       ) {
         console.log(
           chalk.green(`
@@ -61,7 +61,7 @@ function playRockPaperScissors() {
         
       Ƭᕼᕮ ↁ〇〇ᖇ し〇ᑕ𐌊ᕮᗪ Բ〇ᖇᕮ⋎ᕮᖇ❗`)
         );
-        return playRockPaperScissors();
+        return false;
       }
     })
     .catch((error) => {
