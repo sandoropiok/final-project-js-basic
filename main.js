@@ -223,8 +223,8 @@ function secondRoom() {
               "\nYou unlock the left door and move to the next room..."
             )
           );
-          const success = playRockPaperScissors();
-          if (success) {
+          const success2 = playRockPaperScissors();
+          if (success2) {
             thirdRoom(); // Call the next room
           } else {
             console.log(
@@ -244,8 +244,8 @@ function secondRoom() {
               "\nYou unlock the right door and move to the next room..."
             )
           );
-          const success = playRockPaperScissors();
-          if (success) {
+          const success2 = playTicTacToe();
+          if (success2) {
             thirdRoom(); // Call the next room
           } else {
             console.log(

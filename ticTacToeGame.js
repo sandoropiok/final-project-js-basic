@@ -107,10 +107,7 @@ function playTicTacToe() {
    
     ＰＬＡＹＥＲ ${player} ＷＩＮＳ！`)
             );
-            return;
-          } else if (checkDraw()) {
-            console.log("It's a draw!");
-            return;
+            return false;
           }
 
           // Computer's turn
@@ -123,12 +120,9 @@ function playTicTacToe() {
     █▄█ █▀█ █░█   █▀▀ ▄▀█ █ █░░ █▀▄
     ░█░ █▄█ █▄█   █▀░ █▀█ █ █▄▄ █▄▀
   
-    ＧＵＡＲＤＩＡＮ (${computer}) ＷＩＮＳ！`)
+  ＧＵＡＲＤＩＡＮ (${computer}) ＷＩＮＳ！`)
             );
-            return;
-          } else if (checkDraw()) {
-            console.log("It's a draw!");
-            return;
+            return false;
           }
 
           // Continue the game loop
