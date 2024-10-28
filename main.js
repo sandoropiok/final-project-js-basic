@@ -2,10 +2,10 @@ const readline = require("readline-sync");
 const figlet = require("figlet");
 const chalk = require("chalk");
 const { Select } = require("enquirer");
-// Import the number guessing game function
-const playNumberGuessingGame = require("./numberGuessingGame");
-// Import the riddle challenge function
-const riddleChallenge = require("./riddleChallenge");
+const playNumberGuessingGame = require("./numberGuessingGame"); // Import the number guessing game function
+const riddleChallenge = require("./riddleChallenge"); // Import the riddle challenge function
+const playRockPaperScissors = require('./rockPaperScissorsGame'); // Import the rock-paper-scissors game function
+const playTicTacToe = require('./ticTacToeGame'); // Import the tic-tac-toe game function
 
 // Welcome message using ASCII art
 console.log(
@@ -145,8 +145,41 @@ function chooseDirection() {
       console.log(chalk.red("Error with enquirer:", error));
     });
 }
-
-function nextDirection() {
+function nextTwoDoorsRoom() {
+  /* let nextRoomArt = `
+     \\                                                              /
+      \\                                                            /
+       \\ _________________________________________________________/
+        |____|____|____|____|____|____|____|____|____|____|____|___|                                       _-  |
+        |__|____|____|____|____|____|____|____|____|____|____|____||     
+        |____|____|____|____|____|____|____|____|____|____|____|___| 
+        |__|____|____|____|____|____|____|____|____|____|____|_____|
+        |____|____/\\______/\\___|____|____|___/\\______/\\____|___|          
+        |__|__ ,-',-';  !`-.'-.|____|____|_,-',-' ;  ! `-.'-.|_____|
+        |____ /_/ :  !  :  . \_\\_____|_____/_/ :  !  :  .  \_\\___|
+        |__|_| |  :  |  '  |  | |__|_____|_| |              | |__|_|
+        |____| |  ;  ;__:  ;  | |_____|____| |  ;   __:  ;  | |____|
+        |__|_| |  .  :)(.  !  | |__|_____|_| |  .  :)(.  !  | |__|_|
+        |____| |  !  (##)  _  | |_____|____| |  |  (##)  _  | |____|
+        |__|_| |  :  ;""  (_) | |__|_____|_| |  :  ;""  (_) | |__|_| 
+        |____| |  :  :  .  |  | |_____|____| |  :  :  .  !  | |____|
+        |__|_| |  !  ,  ;  ;  | |__|_____|_| |  !  ,  ;  ;  | |__|_|
+        |____| |  .  .  :  :  | |_____|____| |  .  .  :  :  | |____|
+        |__|_| |  .  |  :  .  | |__|_____|_| |  .  |  :  .  | |__|_|
+        |____| |__:__!__:__;__| |_____|____| |__:__!__;__;__| |____|
+        |__|_|/_______________\\|__|_____|_|/_______________\\|__|_|
+       /           _- __---                __-       _ -           \\
+      /   -_- _ -             _- _---                       -_-  -__\\
+     /             __-                         _- _---               \\
+`;
+console.log(chalk.greenBright(nextRoomArt));
+  console.log(
+    chalk.whiteBright(
+      `\n      THIS IS THE NEXT ROOM WITH TWO DOORS!`
+    )
+  );
+}*/
+function roomTwo() {
   const prompt = new Select({
     name: "direction",
     message: "  ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ ！！！",
@@ -155,32 +188,20 @@ function nextDirection() {
   prompt
     .run()
     .then((answer) => {
-      if (answer === "  ＬＥＦＴ") {
-        console.log(
-          chalk.yellow(
-            `\n      𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚗𝚘𝚝𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚢𝚘𝚞 𝚗𝚎𝚎𝚍 𝚝𝚘 𝚐𝚞𝚎𝚜𝚜 𝚝𝚑𝚎 𝚌𝚘𝚛𝚛𝚎𝚌𝚝 𝚗𝚞𝚖𝚋𝚎𝚛...`
-          )
-        );
-        const success = playNumberGuessingGame(); // Call the number guessing game
-        if (!success) {
-          console.log(chalk.red("\nYou can try the other door..."));
-          chooseDirection();
+      if (answer === 'Left (Rock, Paper, Scissors)') {
+        if (playRockPaperScissors()) {
+          console.log(chalk.green("\nYou unlock the left door and move to the next room..."));
+          roomThree(); // Proceed to Room 3
         }
-      } else if (answer === "  ＲＥＩＧＨＴ") {
-        console.log(
-          chalk.yellow(
-            `\n      𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚛𝚒𝚍𝚍𝚕𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚊𝚗𝚜𝚠𝚎𝚛 𝚝𝚑𝚎 𝚏𝚘𝚕𝚕𝚘𝚠𝚒𝚗𝚐...`
-          )
-        );
-        const success = riddleChallenge(); // Call the riddle challenge for the Right door
-        if (!success) {
-          console.log(chalk.red("\nYou can try the other door..."));
-          chooseDirection(); // Retry if failed
+      } else if (answer === 'Right (Tic-Tac-Toe)') {
+        if (playTicTacToe()) {
+          console.log(chalk.green("\nYou unlock the right door and move to the next room..."));
+          roomThree(); // Proceed to Room 3
         }
       }
     })
     .catch((error) => {
-      console.log(chalk.red("Error with enquirer:", error));
+      console.log(chalk.red('Error with enquirer:', error));
     });
 }
 
