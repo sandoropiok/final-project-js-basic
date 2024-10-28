@@ -4,6 +4,7 @@
     "enquirer": "^2.4.1",
     "figlet": "^1.8.0",
     "node": "^20.18.0",
+    "prompt-sync": "^4.2.0",
     "readline-sync": "^1.4.10"
   },
   "name": "final-project-js-basic",

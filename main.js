@@ -4,8 +4,8 @@ const chalk = require("chalk");
 const { Select } = require("enquirer");
 const playNumberGuessingGame = require("./numberGuessingGame"); // Import the number guessing game function
 const riddleChallenge = require("./riddleChallenge"); // Import the riddle challenge function
-const playRockPaperScissors = require('./rockPaperScissorsGame'); // Import the rock-paper-scissors game function
-const playTicTacToe = require('./ticTacToeGame'); // Import the tic-tac-toe game function
+const playRockPaperScissors = require("./rockPaperScissorsGame"); // Import the rock-paper-scissors game function
+const playTicTacToe = require("./ticTacToeGame"); // Import the tic-tac-toe game function
 
 // Welcome message using ASCII art
 console.log(
@@ -65,7 +65,13 @@ let username = readline.question(
 // Greet the player
 console.log(
   chalk.yellowBright(
-    `\n      𝚆𝚎𝚕𝚌𝚘𝚖𝚎, ${username.toUpperCase()}! 𝙻𝚎𝚝 𝚝𝚑𝚎 𝚍𝚞𝚗𝚐𝚎𝚘𝚗'𝚜 𝚌𝚑𝚊𝚕𝚕𝚎𝚗𝚐𝚎𝚜 𝚋𝚎𝚐𝚒𝚗...`
+    figlet.textSync(`\nWelcome, ${username.toUpperCase()}`, {
+      font: 'Double',  // Change this to any figlet font you like
+      horizontalLayout: 'default',
+      verticalLayout: 'default',
+      width: 180,
+      whitespaceBreak: true,
+    })
   )
 );
 
@@ -100,44 +106,63 @@ function showTwoDoorsRoom() {
 
   console.log(chalk.greenBright(roomArt));
   console.log(
-    chalk.whiteBright(
-      `\n      𝗬𝗼𝘂 𝗳𝗶𝗻𝗱 𝘆𝗼𝘂𝗿𝘀𝗲𝗹𝗳 𝗶𝗻 𝗮 𝗱𝗶𝗺𝗹𝘆 𝗹𝗶𝘁 𝗿𝗼𝗼𝗺 𝘄𝗶𝘁𝗵 𝘁𝘄𝗼 𝗱𝗼𝗼𝗿𝘀:`
-    )
+    chalk.greenBright(`
+  ┓┏      ┏•   ┓             ┓┏  •         ┓•   ┓                  • ┓            ┓        
+  ┗┫┏┓┓┏  ╋┓┏┓┏┫  ┓┏┏┓┓┏┏┓┏┏┓┃╋  ┓┏┓  ┏┓  ┏┫┓┏┳┓┃┓┏  ┏┓┏┓┏┓┏┳┓  ┓┏┏┓╋┣┓  ╋┓┏┏┏┓  ┏┫┏┓┏┓┏┓┏•
+  ┗┛┗┛┗┻  ┛┗┛┗┗┻  ┗┫┗┛┗┻┛ ┛┗ ┗┛  ┗┛┗  ┗┻  ┗┻┗┛┗┗┗┗┫  ┛ ┗┛┗┛┛┗┗  ┗┻┛┗┗┛┗  ┗┗┻┛┗┛  ┗┻┗┛┗┛┛ ┛•
+                   ┛                              ┛                                        
+  `)
   );
 }
 
 // Function to prompt the player to choose a direction using enquirer
-function chooseDirection() {
+function firstRoom() {
   const prompt = new Select({
-    name: "direction",
+    name: "firstRoomChoice",
     message: "  ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ ！！！",
-    choices: ["  ＬＥＦＴ", "  ＲＥＩＧＨＴ"],
+    choices: ["  ＜ＬＥＦＴ ＤＯＯＲ＞", "  ＜ＲＩＧＨＴ ＤＯＯＲ＞"],
   });
 
   prompt
     .run()
     .then((answer) => {
-      if (answer === "  ＬＥＦＴ") {
+      if (answer === "  ＜ＬＥＦＴ ＤＯＯＲ＞") {
         console.log(
-          chalk.yellow(
+          chalk.cyanBright(
             `\n      𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚗𝚘𝚝𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚢𝚘𝚞 𝚗𝚎𝚎𝚍 𝚝𝚘 𝚐𝚞𝚎𝚜𝚜 𝚝𝚑𝚎 𝚌𝚘𝚛𝚛𝚎𝚌𝚝 𝚗𝚞𝚖𝚋𝚎𝚛...`
           )
         );
         const success = playNumberGuessingGame(); // Call the number guessing game
-        if (!success) {
-          console.log(chalk.red("\nYou can try the other door..."));
-          chooseDirection();
+        if (success) {
+          secondRoom(); // Call the next room
+        } else {
+          console.log(
+            chalk.red(`
+        ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
+         ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
+         ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
+        `)
+          );
+          firstRoom();
         }
-      } else if (answer === "  ＲＥＩＧＨＴ") {
+      } else if (answer === "  ＜ＲＩＧＨＴ ＤＯＯＲ＞") {
         console.log(
-          chalk.yellow(
+          chalk.cyanBright(
             `\n      𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚛𝚒𝚍𝚍𝚕𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚊𝚗𝚜𝚠𝚎𝚛 𝚝𝚑𝚎 𝚏𝚘𝚕𝚕𝚘𝚠𝚒𝚗𝚐...`
           )
         );
         const success = riddleChallenge(); // Call the riddle challenge for the Right door
-        if (!success) {
-          console.log(chalk.red("\nYou can try the other door..."));
-          chooseDirection(); // Retry if failed
+        if (success) {
+          secondRoom(); // Call the next room
+        } else {
+          console.log(
+            chalk.red(`
+        ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
+         ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
+         ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
+        `)
+          );
+          firstRoom(); // Retry if failed
         }
       }
     })
@@ -145,70 +170,82 @@ function chooseDirection() {
       console.log(chalk.red("Error with enquirer:", error));
     });
 }
-function nextTwoDoorsRoom() {
-  /* let nextRoomArt = `
-     \\                                                              /
-      \\                                                            /
-       \\ _________________________________________________________/
-        |____|____|____|____|____|____|____|____|____|____|____|___|                                       _-  |
-        |__|____|____|____|____|____|____|____|____|____|____|____||     
-        |____|____|____|____|____|____|____|____|____|____|____|___| 
-        |__|____|____|____|____|____|____|____|____|____|____|_____|
-        |____|____/\\______/\\___|____|____|___/\\______/\\____|___|          
-        |__|__ ,-',-';  !`-.'-.|____|____|_,-',-' ;  ! `-.'-.|_____|
-        |____ /_/ :  !  :  . \_\\_____|_____/_/ :  !  :  .  \_\\___|
-        |__|_| |  :  |  '  |  | |__|_____|_| |              | |__|_|
-        |____| |  ;  ;__:  ;  | |_____|____| |  ;   __:  ;  | |____|
+
+function secondRoom() {
+  let nextRoomArt = `
+     \\                                                                /
+      \\                                                              /
+       \\ __________________________________________________________ /
+        |____|____|____|____|____|____|____|____|____|____|____|___|
+        |__|____|____|____|____|____|____|____|____|____|____|___|_|
+        |____|____|____|____|____|____|____|____|____|____|____|___|
+        |__|____|____|____|____|____|____|____|____|____|____|___|_|
+        |____|__/\\__________/\\___|____|____|__/\\__________/\\___|___|
+        |__|___/ /;  ;  !  :\\ \\|___|_____|___/ /;  ;  ,  :\\ \\____|_|
+        |_____/_/ :  !  :  . \\_\\______|_____/_/ :  '  :  . \\_\\_____|
+        |__|_| |  :  :  '  ;  | |__|_____|_| |  !  ;  :  ,  | |__|_|
+        |____| |  ;  ;__:  ;  | |_____|____| |  ;  '__:  ;  | |____|
         |__|_| |  .  :)(.  !  | |__|_____|_| |  .  :)(.  !  | |__|_|
-        |____| |  !  (##)  _  | |_____|____| |  |  (##)  _  | |____|
-        |__|_| |  :  ;""  (_) | |__|_____|_| |  :  ;""  (_) | |__|_| 
-        |____| |  :  :  .  |  | |_____|____| |  :  :  .  !  | |____|
+        |____| |  !  (##)  _  | |_____|____| |  '  (##)  _  | |____|
+        |__|_| |  :  ;""  (_) | |__|_____|_| |  :  ;""  (_) | |__|_|
+        |____| |  :  :  .  ;  | |_____|____| |  :  :  .  ,  | |____|
         |__|_| |  !  ,  ;  ;  | |__|_____|_| |  !  ,  ;  ;  | |__|_|
         |____| |  .  .  :  :  | |_____|____| |  .  .  :  :  | |____|
-        |__|_| |  .  |  :  .  | |__|_____|_| |  .  |  :  .  | |__|_|
+        |__|_| |  .  ,  :  .  | |__|_____|_| |  .  '  :  .  | |__|_|
         |____| |__:__!__:__;__| |_____|____| |__:__!__;__;__| |____|
-        |__|_|/_______________\\|__|_____|_|/_______________\\|__|_|
-       /           _- __---                __-       _ -           \\
-      /   -_- _ -             _- _---                       -_-  -__\\
-     /             __-                         _- _---               \\
+        |__|_|/________________\\|__|_____|_|/________________\\|__|_|
+       /_--__      _- __-- -                __-       _ -           \\
+      /   -_- _ -              _- _---     -__--_            -_-  -__\\
+     / _-           __-               _-__-       _- _---        -_   \\
 `;
-console.log(chalk.greenBright(nextRoomArt));
+  console.log(chalk.greenBright(nextRoomArt));
   console.log(
-    chalk.whiteBright(
-      `\n      THIS IS THE NEXT ROOM WITH TWO DOORS!`
-    )
+    chalk.greenBright(`
+┏┳┓┓┏┳┏┓  ┳┏┓  ┏┳┓┓┏┏┓  ┳┓┏┓┏┓┏┓┏┳┓  ┳┓┏┓┏┓┳┳┓  ┓ ┏┳┏┳┓┓┏  ┏┳┓┓ ┏┏┓  ┳┓┏┓┏┓┳┓┏┓╻
+ ┃ ┣┫┃┗┓  ┃┗┓   ┃ ┣┫┣   ┃┃┣  ┃┃  ┃   ┣┫┃┃┃┃┃┃┃  ┃┃┃┃ ┃ ┣┫   ┃ ┃┃┃┃┃  ┃┃┃┃┃┃┣┫┗┓┃
+ ┻ ┛┗┻┗┛  ┻┗┛   ┻ ┛┗┗┛  ┛┗┗┛┗┛┗┛ ┻   ┛┗┗┛┗┛┛ ┗  ┗┻┛┻ ┻ ┛┗   ┻ ┗┻┛┗┛  ┻┛┗┛┗┛┛┗┗┛•
+                                                                                
+`)
   );
-}*/
-function roomTwo() {
+
   const prompt = new Select({
-    name: "direction",
+    name: "secondRoomChoice",
     message: "  ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ ！！！",
     choices: ["  ＬＥＦＴ", "  ＲＥＩＧＨＴ"],
   });
   prompt
     .run()
     .then((answer) => {
-      if (answer === 'Left (Rock, Paper, Scissors)') {
+      if (answer === "  ＬＥＦＴ") {
         if (playRockPaperScissors()) {
-          console.log(chalk.green("\nYou unlock the left door and move to the next room..."));
+          console.log(
+            chalk.green(
+              "\nYou unlock the left door and move to the next room..."
+            )
+          );
           roomThree(); // Proceed to Room 3
+          secondRoom();
         }
-      } else if (answer === 'Right (Tic-Tac-Toe)') {
+      } else if (answer === "  ＲＥＩＧＨＴ") {
         if (playTicTacToe()) {
-          console.log(chalk.green("\nYou unlock the right door and move to the next room..."));
+          console.log(
+            chalk.green(
+              "\nYou unlock the right door and move to the next room..."
+            )
+          );
           roomThree(); // Proceed to Room 3
         }
       }
     })
     .catch((error) => {
-      console.log(chalk.red('Error with enquirer:', error));
+      console.log(chalk.red("Error with enquirer:", error));
     });
 }
 
 // Function to initiate the room and player choice
 function startDungeonSection() {
   showTwoDoorsRoom(); // Show the new room with two doors
-  chooseDirection(); // Ask the player to choose between Left and Right
+  firstRoom(); // Ask the player to choose between Left and Right
 }
 
 startDungeonSection();
