@@ -218,34 +218,26 @@ function secondRoom() {
     .then((answer) => {
       if (answer === "  ＷＥＳＴ ＤＯＯＲ") {
         if (playRockPaperScissors()) {
-          console.log(
-            chalk.green(
-              "\nYou unlock the left door and move to the next room..."
-            )
-          );
-          const success2 = playRockPaperScissors();
-          if (success2) {
-            thirdRoom(); // Call the next room
-          } else {
-            console.log(
-              chalk.red(`
-          ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
-           ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
-           ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
-          `)
-            );
-            secondRoom();
-          }
-        }
+          console.log(chalk.green("\nYou unlock the left door and move to the next room..."));
+          return playRockPaperScissors()
+            .then((success2) => {
+              if (success2) {
+                thirdRoom(); // Call the next room
+            } else {
+               console.log(
+                chalk.red(`
+            ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
+             ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
+             ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
+            `));
+              secondRoom();
+            }
+        });
       } else if (answer === "  ＥＡＳＴ ＤＯＯＲ") {
         if (playTicTacToe()) {
-          console.log(
-            chalk.green(
-              "\nYou unlock the right door and move to the next room..."
-            )
-          );
-          const success2 = playTicTacToe();
-          if (success2) {
+          console.log(chalk.green("\nYou unlock the right door and move to the next room..."));
+          return playTicTacToe()
+          .then((success2) => {if (success2) {
             thirdRoom(); // Call the next room
           } else {
             console.log(
@@ -253,13 +245,13 @@ function secondRoom() {
           ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
            ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
            ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
-          `)
-            );
+          `));
             secondRoom();
-          }
+           }
+         });  
         }
       }
-    })
+    }})
     .catch((error) => {
       console.log(chalk.red("Error with enquirer:", error));
     });
