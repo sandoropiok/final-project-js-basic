@@ -54,7 +54,7 @@ function playNumberGuessingGame() {
 
   if (!guessedCorrectly) {
     console.log(
-      chalk.red(`    
+      chalk.redBright(`    
           ██████████████████████████████████▀█████
           █▄─█▀▀▀█─▄█▄─▄▄▀█─▄▄─█▄─▀█▄─▄█─▄▄▄▄█████
           ██─█─█─█─███─▄─▄█─██─██─█▄▀─██─██▄─█░░██
