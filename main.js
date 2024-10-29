@@ -217,41 +217,53 @@ function secondRoom() {
     .run()
     .then((answer) => {
       if (answer === "  ＷＥＳＴ ＤＯＯＲ") {
-        if (playRockPaperScissors()) {
-          console.log(chalk.green("\nYou unlock the left door and move to the next room..."));
-          return playRockPaperScissors()
-            .then((success2) => {
-              if (success2) {
-                thirdRoom(); // Call the next room
+        console.log(
+          chalk.green("\nYou unlock the left door and move to the next room...")
+        );
+        playRockPaperScissors()
+          .then((success) => {
+            if (success) {
+              thirdRoom(); // Call the next room
             } else {
-               console.log(
+              console.log(
                 chalk.red(`
-            ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
-             ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
-             ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
-            `));
+          ╦  ╔═╗╔═╗╔╦╗  ╔═╗╦ ╦╔═╗╔╗╔╔═╗╔═╗
+          ║  ╠═╣╚═╗ ║   ║  ╠═╣╠═╣║║║║  ║╣ 
+          ╩═╝╩ ╩╚═╝ ╩   ╚═╝╩ ╩╩ ╩╝╚╝╚═╝╚═╝
+
+        ƬᖇჄ ᕮᗩ⟆Ƭ ᗪ〇〇ᖇ❗❗❗
+            `)
+              );
               secondRoom();
             }
-        });
+          })
+          .catch((error) => console.log(chalk.red("Game error:", error)));
       } else if (answer === "  ＥＡＳＴ ＤＯＯＲ") {
-        if (playTicTacToe()) {
-          console.log(chalk.green("\nYou unlock the right door and move to the next room..."));
-          return playTicTacToe()
-          .then((success2) => {if (success2) {
-            thirdRoom(); // Call the next room
-          } else {
-            console.log(
-              chalk.red(`
-          ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
-           ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
-           ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
-          `));
-            secondRoom();
-           }
-         });  
-        }
+        console.log(
+          chalk.green(
+            "\nYou unlock the right door and move to the next room..."
+          )
+        );
+        playTicTacToe()
+          .then((success) => {
+            if (success) {
+              thirdRoom(); // Call the next room
+            } else {
+              console.log(
+                chalk.red(`
+          ╦  ╔═╗╔═╗╔╦╗  ╔═╗╦ ╦╔═╗╔╗╔╔═╗╔═╗
+          ║  ╠═╣╚═╗ ║   ║  ╠═╣╠═╣║║║║  ║╣ 
+          ╩═╝╩ ╩╚═╝ ╩   ╚═╝╩ ╩╩ ╩╝╚╝╚═╝╚═╝
+
+        ƬᖇჄ ᗯᕮ⟆Ƭ ↁ〇〇ᖇ❗❗❗
+          `)
+              );
+              secondRoom();
+            }
+          })
+          .catch((error) => console.log(chalk.red("Game error:", error)));
       }
-    }})
+    })
     .catch((error) => {
       console.log(chalk.red("Error with enquirer:", error));
     });
@@ -262,23 +274,23 @@ function thirdRoom() {
      \\                                                              /
       \\                                                            /
        \\ ________________________________________________________ /
-        |_                                                       _|
-        |_                                                       _|
-        |_                                                       _|
-        |_         ___________________________________           _|
-        |_         _|* * * * * * * * * * * * * * * *|_           _|
-        |_         _|*      .----------------.     *|_           _|
-        |_         _|*     | .--------------. |    *|_           _|
-        |_         _|*     | |     ____     | |    *|_           _|
-        |_         _|*     | |   .' || '.   | |    *|_           _|
-        |_         _|*     | |  /  .--.  \\  | |    *|_           _|
-        |_         _|*     | |  |¬|    |¬|  | |    *|_           _|
-        |_         _|*     | |  \\  '--'  /  | |    *|_           _|
-        |_         _|*     | |   '._!!_.'   | |    *|_           _|
-        |_         _|*     | |              | |    *|_           _|
-        |_         _|*     | '--------------' |    *|_           _|
-        |_         _|*      '----------------'     *|_           _|
-        |_         _|*                             *|_           _|
+        |___--____-______-_-____________---_-________-____-_-_____|
+        |_| \\_________________________________________________/ |_|
+        |_|  |    _______________________________________     |  |_|
+        |_|  |   / ___________________________________   \\   |  |_|
+        |_|  |  | |_|* * * * * * * * * * * * * * * *|_|   |  |  |_|
+        |_|  |  | |_|*      .----------------.     *|_|   |  |  |_|
+        |_|  |  | |_|*     | .--------------. |    *|_|   |  |  |_|
+        |_|  |  | |_|*     | |     ____     | |    *|_|   |  |  |_|
+        |_|  |  | |_|*     | |   .' || '.   | |    *|_|   |  |  |_|
+        |_|  |  | |_|*     | |  /  .--.  \\  | |    *|_|   |  |  |_|
+        |_|  |  | |_|*     | |  |¬|    |¬|  | |    *|_|   |  |  |_|
+        |_|  |  | |_|*     | |  \\  '--'  /  | |    *|_|   |  |  |_|
+        |_|  |  | |_|*     | |   '._!!_.'   | |    *|_|   |  |  |_|
+        |_|  |  | |_|*     | |              | |    *|_|   |  |  |_|
+        |_|  |  | |_|*     | '--------------' |    *|_|   |  |  |_|
+        |_| /    \\|_|*      '----------------'     *|_|/      \\ |_|
+        |_|/      \\_|*                             *|_/        \\_|
         |___________|*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*|_____________|
        /                                                           \\
       /                                                             \\

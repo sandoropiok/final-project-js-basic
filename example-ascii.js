@@ -111,3 +111,62 @@ console.log(`
       /   -_- _ -             _- _---                       -_-  -_ \\
      /             __-                         _- _---               \\
 `;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (answer === "  ＷＥＳＴ ＤＯＯＲ") {
+  if (playRockPaperScissors()) {
+    console.log(chalk.green("\nYou unlock the left door and move to the next room..."));
+    return playRockPaperScissors()
+      .then((success2) => {
+        if (success2) {
+          thirdRoom(); // Call the next room
+      } else {
+         console.log(
+          chalk.red(`
+    ╦  ╔═╗╔═╗╔╦╗  ╔═╗╦ ╦╔═╗╔╗╔╔═╗╔═╗
+    ║  ╠═╣╚═╗ ║   ║  ╠═╣╠═╣║║║║  ║╣ 
+    ╩═╝╩ ╩╚═╝ ╩   ╚═╝╩ ╩╩ ╩╝╚╝╚═╝╚═╝
+
+  ƬᖇჄ ᕮᗩ⟆Ƭ ᗪ〇〇ᖇ❗❗❗
+      `));
+        secondRoom();
+      }
+  });
+} else if (answer === "  ＥＡＳＴ ＤＯＯＲ") {
+  if (playTicTacToe()) {
+    console.log(chalk.green("\nYou unlock the right door and move to the next room..."));
+    return playTicTacToe()
+    .then((success2) => {if (success2) {
+      thirdRoom(); // Call the next room
+    } else {
+      console.log(
+        chalk.red(`
+    ╦  ╔═╗╔═╗╔╦╗  ╔═╗╦ ╦╔═╗╔╗╔╔═╗╔═╗
+    ║  ╠═╣╚═╗ ║   ║  ╠═╣╠═╣║║║║  ║╣ 
+    ╩═╝╩ ╩╚═╝ ╩   ╚═╝╩ ╩╩ ╩╝╚╝╚═╝╚═╝
+
+  ƬᖇჄ ᗯᕮ⟆Ƭ ↁ〇〇ᖇ❗❗❗
+    `));
+      secondRoom();
+     }
+   });  
+  }
+}
+}
