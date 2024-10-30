@@ -318,47 +318,9 @@ function thirdRoom() {
     .run()
     .then((answer) => {
       if (answer === "  ＦＩＲＳＴ ＬＯＣＫ") {
-        if (playRockPaperScissors()) {
-          console.log(
-            chalk.green(
-              "\nYou unlock the left door and move to the next room..."
-            )
-          );
-          const success = playRockPaperScissors();
-          if (success) {
-            thirdRoom(); // Call the next room
-          } else {
-            console.log(
-              chalk.red(`
-          ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
-           ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
-           ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
-          `)
-            );
-            secondRoom();
-          }
-        }
+        
       } else if (answer === "  ＳＥＣＯＮＤ ＬＯＣＫ") {
-        if (playTicTacToe()) {
-          console.log(
-            chalk.green(
-              "\nYou unlock the right door and move to the next room..."
-            )
-          );
-          const success = playRockPaperScissors();
-          if (success) {
-            thirdRoom(); // Call the next room
-          } else {
-            console.log(
-              chalk.red(`
-          ╔╦╗╦═╗╦ ╦  ╔╦╗╦ ╦╔═╗  ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔╦╗╔═╗╔═╗╦═╗
-           ║ ╠╦╝╚╦╝   ║ ╠═╣║╣   ║ ║ ║ ╠═╣║╣ ╠╦╝   ║║║ ║║ ║╠╦╝
-           ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
-          `)
-            );
-            secondRoom();
-          }
-        }
+
       }
     })
     .catch((error) => {
