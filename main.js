@@ -318,7 +318,10 @@ function thirdRoom() {
     .run()
     .then((answer) => {
       if (answer === "  ＦＩＲＳＴ ＬＯＣＫ") {
-        
+
+      } else {
+
+      }
       } else if (answer === "  ＳＥＣＯＮＤ ＬＯＣＫ") {
 
       }
