@@ -2,10 +2,13 @@ const readline = require("readline-sync");
 const figlet = require("figlet");
 const chalk = require("chalk");
 const { Select } = require("enquirer");
-const playNumberGuessingGame = require("./numberGuessingGame"); // Import the number guessing game function
-const riddleChallenge = require("./riddleChallenge"); // Import the riddle challenge function
-const playRockPaperScissors = require("./rockPaperScissorsGame"); // Import the rock-paper-scissors game function
-const playTicTacToe = require("./ticTacToeGame"); // Import the tic-tac-toe game function
+const playNumberGuessingGame = require("./numberGuessingGame");     // Import the number guessing game function
+const riddleChallenge = require("./riddleChallenge");   // Import the riddle challenge function
+const playRockPaperScissors = require("./rockPaperScissorsGame");    // Import the rock-paper-scissors game function
+const playTicTacToe = require("./ticTacToeGame");    // Import the tic-tac-toe game function
+const playWordScrambleGame = require("./wordScrambleGame");    // Import the word scramble game function
+const playLastRiddleGame = require("./lastRiddleGame");      // Import the last riddle game function
+
 
 // Welcome message using ASCII art
 console.log(
@@ -318,12 +321,11 @@ function thirdRoom() {
     .run()
     .then((answer) => {
       if (answer === "  ＦＩＲＳＴ ＬＯＣＫ") {
-
-      } else {
-
-      }
+        console.log();
+        playWordScrambleGame()
       } else if (answer === "  ＳＥＣＯＮＤ ＬＯＣＫ") {
-
+        console.log();
+        playLastRiddleGame()
       }
     })
     .catch((error) => {
