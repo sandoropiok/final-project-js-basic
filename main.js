@@ -2,13 +2,12 @@ const readline = require("readline-sync");
 const figlet = require("figlet");
 const chalk = require("chalk");
 const { Select } = require("enquirer");
-const playNumberGuessingGame = require("./numberGuessingGame");     // Import the number guessing game function
-const riddleChallenge = require("./riddleChallenge");   // Import the riddle challenge function
-const playRockPaperScissors = require("./rockPaperScissorsGame");    // Import the rock-paper-scissors game function
-const playTicTacToe = require("./ticTacToeGame");    // Import the tic-tac-toe game function
-const playWordScrambleGame = require("./wordScrambleGame");    // Import the word scramble game function
-const playLastRiddleGame = require("./lastRiddleGame");      // Import the last riddle game function
-
+const playNumberGuessingGame = require("./numberGuessingGame"); // Import the number guessing game function
+const riddleChallenge = require("./riddleChallenge"); // Import the riddle challenge function
+const playRockPaperScissors = require("./rockPaperScissorsGame"); // Import the rock-paper-scissors game function
+const playTicTacToe = require("./ticTacToeGame"); // Import the tic-tac-toe game function
+const playWordScrambleGame = require("./wordScrambleGame"); // Import the word scramble game function
+const playLastRiddleGame = require("./lastRiddleGame"); // Import the last riddle game function
 
 // Welcome message using ASCII art
 console.log(
@@ -243,7 +242,9 @@ function secondRoom() {
               secondRoom();
             }
           })
-          .catch((error) => console.log(chalk.red("Ｇａｍｅ ｅｒｒｏｒ：", error)));
+          .catch((error) =>
+            console.log(chalk.red("Ｇａｍｅ ｅｒｒｏｒ：", error))
+          );
       } else if (answer === "  ＥＡＳＴ ＤＯＯＲ") {
         console.log(
           chalk.green(
@@ -267,7 +268,9 @@ function secondRoom() {
               secondRoom();
             }
           })
-          .catch((error) => console.log(chalk.red("Ｇａｍｅ ｅｒｒｏｒ：", error)));
+          .catch((error) =>
+            console.log(chalk.red("Ｇａｍｅ ｅｒｒｏｒ：", error))
+          );
       }
     })
     .catch((error) => {
@@ -321,11 +324,65 @@ function thirdRoom() {
     .run()
     .then((answer) => {
       if (answer === "  ＦＩＲＳＴ ＬＯＣＫ") {
-        console.log();
-        playWordScrambleGame()
+        console.log(chalk.yellowBright(
+          `ＴＯ ＯＰＥＮ ＦＩＲＳＴ ＬＯＣＫ， ＹＯＵ ＮＥＥＤ ＴＯ ＧＵＥＳＳ ＴＨＥ ＷＯＲＤＳ！`
+        ));
+        playWordScrambleGame();
+        if (success3) {
+          console.log();
+          playLastRiddleGame();
+        } else {
+          console.log(
+            chalk.redBright(`              
+                  █     █░ ▄▄▄        ██████ ▄▄▄█████▓▓█████ ▓█████▄  ▐██▌ 
+                 ▓█░ █ ░█░▒████▄    ▒██    ▒ ▓  ██▒ ▓▒▓█   ▀ ▒██▀ ██▌ ▐██▌ 
+                 ▒█░ █ ░█ ▒██  ▀█▄  ░ ▓██▄   ▒ ▓██░ ▒░▒███   ░██   █▌ ▐██▌ 
+                 ░█░ █ ░█ ░██▄▄▄▄██   ▒   ██▒░ ▓██▓ ░ ▒▓█  ▄ ░▓█▄   ▌ ▓██▒ 
+                 ░░██▒██▓  ▓█   ▓██▒▒██████▒▒  ▒██▒ ░ ░▒████▒░▒████▓  ▒▄▄  
+                 ░ ▓░▒ ▒   ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░  ▒ ░░   ░░ ▒░ ░ ▒▒▓  ▒  ░▀▀▒ 
+                   ▒ ░ ░    ▒   ▒▒ ░░ ░▒  ░ ░    ░     ░ ░  ░ ░ ▒  ▒  ░  ░ 
+                   ░   ░    ░   ▒   ░  ░  ░    ░         ░    ░ ░  ░     ░ 
+                     ░          ░  ░      ░              ░  ░   ░     ░    
+                                                              ░    
+   ▄· ▄▌      ▄• ▄▌    ▄▄▌        .▄▄ · ▄▄▄▄▄     ▄· ▄▌      ▄• ▄▌▄▄▄       ▄▄·  ▄ .▄ ▄▄▄·  ▐ ▄  ▄▄· ▄▄▄ ..▄▄ ·          
+  ▐█▪██▌▪     █▪██▌    ██•  ▪     ▐█ ▀. •██      ▐█▪██▌▪     █▪██▌▀▄ █·    ▐█ ▌▪██▪▐█▐█ ▀█ •█▌▐█▐█ ▌▪▀▄.▀·▐█ ▀.          
+  ▐█▌▐█▪ ▄█▀▄ █▌▐█▌    ██▪   ▄█▀▄ ▄▀▀▀█▄ ▐█.▪    ▐█▌▐█▪ ▄█▀▄ █▌▐█▌▐▀▀▄     ██ ▄▄██▀▐█▄█▀▀█ ▐█▐▐▌██ ▄▄▐▀▀▪▄▄▀▀▀█▄         
+   ▐█▀·.▐█▌.▐▌▐█▄█▌    ▐█▌▐▌▐█▌.▐▌▐█▄▪▐█ ▐█▌·     ▐█▀·.▐█▌.▐▌▐█▄█▌▐█•█▌    ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐███▌▐█▄▄▌▐█▄▪▐█         
+    ▀ •  ▀█▄▀▪ ▀▀▀     .▀▀▀  ▀█▄▀▪ ▀▀▀▀  ▀▀▀       ▀ •  ▀█▄▀▪ ▀▀▀ .▀  ▀    ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀  ▀▀▀  ▀▀▀▀  ▀  ▀  ▀ 
+  
+`)
+          );
+        }
       } else if (answer === "  ＳＥＣＯＮＤ ＬＯＣＫ") {
-        console.log();
-        playLastRiddleGame()
+        console.log(chalk.yellowBright(
+          `ＴＯ ＯＰＥＮ ＳＥＣＯＮＤ ＬＯＣＫ， ＹＯＵ ＮＥＥＤ ＴＯ ＳＯＬＶＥ ＴＨＥ ＲＩＤＤＬＥＳ！`
+        ));
+        playLastRiddleGame();
+        if (success3) {
+          console.log();
+          playWordScrambleGame();
+        } else {
+          console.log(
+            chalk.redBright(`              
+                  █     █░ ▄▄▄        ██████ ▄▄▄█████▓▓█████ ▓█████▄  ▐██▌ 
+                 ▓█░ █ ░█░▒████▄    ▒██    ▒ ▓  ██▒ ▓▒▓█   ▀ ▒██▀ ██▌ ▐██▌ 
+                 ▒█░ █ ░█ ▒██  ▀█▄  ░ ▓██▄   ▒ ▓██░ ▒░▒███   ░██   █▌ ▐██▌ 
+                 ░█░ █ ░█ ░██▄▄▄▄██   ▒   ██▒░ ▓██▓ ░ ▒▓█  ▄ ░▓█▄   ▌ ▓██▒ 
+                 ░░██▒██▓  ▓█   ▓██▒▒██████▒▒  ▒██▒ ░ ░▒████▒░▒████▓  ▒▄▄  
+                 ░ ▓░▒ ▒   ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░  ▒ ░░   ░░ ▒░ ░ ▒▒▓  ▒  ░▀▀▒ 
+                   ▒ ░ ░    ▒   ▒▒ ░░ ░▒  ░ ░    ░     ░ ░  ░ ░ ▒  ▒  ░  ░ 
+                   ░   ░    ░   ▒   ░  ░  ░    ░         ░    ░ ░  ░     ░ 
+                     ░          ░  ░      ░              ░  ░   ░     ░    
+                                                              ░    
+   ▄· ▄▌      ▄• ▄▌    ▄▄▌        .▄▄ · ▄▄▄▄▄     ▄· ▄▌      ▄• ▄▌▄▄▄       ▄▄·  ▄ .▄ ▄▄▄·  ▐ ▄  ▄▄· ▄▄▄ ..▄▄ ·          
+  ▐█▪██▌▪     █▪██▌    ██•  ▪     ▐█ ▀. •██      ▐█▪██▌▪     █▪██▌▀▄ █·    ▐█ ▌▪██▪▐█▐█ ▀█ •█▌▐█▐█ ▌▪▀▄.▀·▐█ ▀.          
+  ▐█▌▐█▪ ▄█▀▄ █▌▐█▌    ██▪   ▄█▀▄ ▄▀▀▀█▄ ▐█.▪    ▐█▌▐█▪ ▄█▀▄ █▌▐█▌▐▀▀▄     ██ ▄▄██▀▐█▄█▀▀█ ▐█▐▐▌██ ▄▄▐▀▀▪▄▄▀▀▀█▄         
+   ▐█▀·.▐█▌.▐▌▐█▄█▌    ▐█▌▐▌▐█▌.▐▌▐█▄▪▐█ ▐█▌·     ▐█▀·.▐█▌.▐▌▐█▄█▌▐█•█▌    ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐███▌▐█▄▄▌▐█▄▪▐█         
+    ▀ •  ▀█▄▀▪ ▀▀▀     .▀▀▀  ▀█▄▀▪ ▀▀▀▀  ▀▀▀       ▀ •  ▀█▄▀▪ ▀▀▀ .▀  ▀    ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀  ▀▀▀  ▀▀▀▀  ▀  ▀  ▀ 
+  
+`)
+          );
+        }
       }
     })
     .catch((error) => {
