@@ -1,24 +1,26 @@
+// playLastRiddleGame.js
 const readline = require("readline-sync");
 const chalk = require("chalk");
 const figlet = require("figlet");
 
-function playLastRiddleGame() {
-  console.log(chalk.blue(figlet.textSync("Riddle Game")));
-  console.log(chalk.green("Welcome to the Programming Riddle Game!"));
+const playLastRiddleGame = () => {
+  console.log(chalk.greenBright(
+    `\n    ＴＯ ＯＰＥＮ ＳＥＣＯＮＤ ＬＯＣＫ， ＹＯＵ ＮＥＥＤ ＴＯ ＳＯＬＶＥ ＴＨＥ ＲＩＤＤＬＥＳ！`
+  ));
 
   const riddles = {
     easy: {
-      question: "When was JavaScript created?",
+      question: "ＷＨＥＮ ＷＡＳ ＪＡＶＡＳＣＲＩＰＴ ＣＲＥＡＴＥＤ?",
       choices: ["1990", "1995", "2000", "2005"],
       answer: "1995",
     },
     medium: {
-      question: "Which of these is a JavaScript framework?",
+      question: "ＷＨＩＣＨ ＯＦ ＴＨＥＳＥ ＩＳ Ａ ＪＡＶＡＳＣＲＩＰＴ ＦＲＡＭＥＷＯＲＫ？",
       choices: ["Django", "Rails", "Laravel", "React"],
       answer: "React",
     },
     hard: {
-      question: "What keyword is used to declare a variable in ES6?",
+      question: "ＷＨＡＴ ＫＥＹＷＯＲＤ ＩＳ ＵＳＥＤ ＴＯ ＤＥＣＬＡＲＥ Ａ ＶＡＲＩＡＢＬＥ ＩＮ ＥＳ６？",
       choices: ["let", "var", "int", "float"],
       answer: "let",
     },
@@ -26,17 +28,20 @@ function playLastRiddleGame() {
 
   let currentDifficulty = "easy";
 
-  function getNextDifficulty() {
+  const getNextDifficulty = () => {
     if (currentDifficulty === "easy") return "medium";
     if (currentDifficulty === "medium") return "hard";
     return "end";
-  }
+  };
 
-  function playRound(difficulty) {
+  const playRound = (difficulty) => {
     const { question, choices, answer } = riddles[difficulty];
-    console.log(`\n${chalk.cyan(question)}`);
+    console.log(`\n${chalk.cyan(figlet.textSync(question, { font: "Small" }))}`);
 
-    const selectedAnswer = readline.keyInSelect(choices, "Choose your answer:");
+    const selectedAnswer = readline.keyInSelect(
+      choices,
+      "ＣＨＯＳＳＥ ＹＯＵＲ ＡＮＳＷＥＲ："
+    );
 
     if (selectedAnswer === -1) {
       console.log(chalk.yellow("Game exited."));
@@ -44,29 +49,32 @@ function playLastRiddleGame() {
     }
 
     if (choices[selectedAnswer] === answer) {
-      console.log(chalk.green("Correct!"));
+      console.log(chalk.green(figlet.textSync("Correct!", { font: "Cybermedium" })));
       return true;
     } else {
-      console.log(chalk.red(`Wrong answer. The correct answer was: ${answer}`));
+      console.log(
+        chalk.red(`Ｗｒｏｎｇ ａｎｓｗｅｒ． Ｔｈｅ ｃｏｒｒｅｃｔ ａｎｓｗｅｒ ｗａｓ： ${answer}`)
+      );
       return false;
     }
-  }
+  };
 
-  function playGame() {
+  const playGame = () => {
     while (true) {
       const roundResult = playRound(currentDifficulty);
-      if (!roundResult) return;
+      if (!roundResult) return false; // Return false if player exits or answers incorrectly
 
       currentDifficulty = getNextDifficulty();
       if (currentDifficulty === "end") {
         console.log(
-          chalk.magenta("Congratulations! You completed all levels!")
+          chalk.magenta(figlet.textSync("You did it!", { font: "Cybermedium" }))
         );
-        break;
+        return true; // Return true when player completes all levels
       }
     }
-  }
-}
+  };
 
+  return playGame();
+};
 
-module.export = playLastRiddleGame;
+module.exports = playLastRiddleGame;
