@@ -1,15 +1,18 @@
-const readline = require("readline-sync");
-const figlet = require("figlet");
-const chalk = require("chalk");
-const { Select } = require("enquirer");
-const playNumberGuessingGame = require("./numberGuessingGame"); // Import the number guessing game function
-const riddleChallenge = require("./riddleChallenge"); // Import the riddle challenge function
-const playRockPaperScissors = require("./rockPaperScissorsGame"); // Import the rock-paper-scissors game function
-const playTicTacToe = require("./ticTacToeGame"); // Import the tic-tac-toe game function
-const playWordScrambleGame = require("./wordScrambleGame"); // Import the word scramble game function
-const playLastRiddleGame = require("./lastRiddleGame"); // Import the last riddle game function
+// Required Libraries
+const readline = require("readline-sync"); // Library for synchronous user input
+const figlet = require("figlet"); // Library for generating ASCII art text
+const chalk = require("chalk"); // Library for colorful text output
+const { Select } = require("enquirer"); // Enquirer package for interactive prompts
 
-// Welcome message using ASCII art
+// Import game functions from external files
+const playNumberGuessingGame = require("./numberGuessingGame"); // Number guessing game
+const riddleChallenge = require("./riddleChallenge"); // Riddle challenge
+const playRockPaperScissors = require("./rockPaperScissorsGame"); // Rock-paper-scissors game
+const playTicTacToe = require("./ticTacToeGame"); // Tic-tac-toe game
+const playWordScrambleGame = require("./wordScrambleGame"); // Word scramble game
+const playLastRiddleGame = require("./lastRiddleGame"); // Last riddle game
+
+// Display a welcome message with ASCII art, using chalk for color and figlet for styling
 console.log(
   chalk.redBright(`
           ▄   ▄   ▄▄▄ ▒█        ▄▄▄  ▄▄▄▄    ▄▄▄      █     ▄▄▄  
@@ -39,7 +42,8 @@ console.log(
        ░                ░            ░                      ░            ░ 
 `)
 );
-// Game description
+
+// Game Introduction with Storyline
 console.log(
   chalk.greenBright(`
    ____________________________________________________________________  
@@ -61,14 +65,16 @@ console.log(
 
 // Prompt for the player's username
 let username = readline.question(
-  chalk.cyan(`      𝕎𝕙𝕒𝕥 𝕚𝕤 𝕪𝕠𝕦𝕣 𝕟𝕒𝕞𝕖, 𝕓𝕣𝕒𝕧𝕖 𝕒𝕕𝕧𝕖𝕟𝕥𝕦𝕣𝕖𝕣❔`)
+  chalk.bgCyan(
+    `      山廾闩ㄒ 工丂 ㄚ龱ㄩ尺 Ɲ闩爪㠪⸝ 乃尺闩ᐯ㠪 闩ᗪᐯ㠪Ɲㄒㄩ尺㠪尺 ❔`
+  )
 );
 
-// Greet the player
+// Display personalized welcome message
 console.log(
   chalk.yellowBright(
     figlet.textSync(`\nWelcome, ${username.toUpperCase()}`, {
-      font: "Double", // Change this to any figlet font you like
+      font: "Double", // ASCII font style
       horizontalLayout: "default",
       verticalLayout: "default",
       width: 180,
@@ -77,8 +83,8 @@ console.log(
   )
 );
 
-// Function to display the room with two doors (left and right)
-function showTwoDoorsRoom() {
+// Function to display a room with two doors and prompt the player to choose
+const showTwoDoorsRoom = () => {
   let roomArt = `
      \\                                                               /
       \\                                                             /
@@ -115,29 +121,31 @@ function showTwoDoorsRoom() {
                    ┛                              ┛                                        
   `)
   );
-}
+};
 
 // Function to prompt the player to choose a direction using enquirer
-function firstRoom() {
+const firstRoom = () => {
   const prompt = new Select({
-    name: "firstRoomChoice",
-    message: `  !!! 👀 ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ 👀 ！！！
-    `,
-    choices: ["  ＬＥＦＴ ＤＯＯＲ", "  ＲＩＧＨＴ ＤＯＯＲ"],
+    name: "firstRoomChoice", // Name of the prompt, used for identification
+    message: chalk.bgCyan(
+      `  !!! 👀 ＣＨＯＯＳＥ ＬＥＦＴ ＯＲ ＲＩＧＨＴ ＤＯＯＲ 👀 ！！！\n`
+    ), // Message displayed to the user
+    choices: ["  ＬＥＦＴ ＤＯＯＲ", "  ＲＩＧＨＴ ＤＯＯＲ"], // Options available to the user
   });
-
+  // Run the prompt and handle the user's choice
   prompt
     .run()
     .then((answer) => {
+      // Check which lock the user chose
       if (answer === "  ＬＥＦＴ ＤＯＯＲ") {
         console.log(
           chalk.cyanBright(
-            `\n   𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚗𝚘𝚝𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚢𝚘𝚞 𝚗𝚎𝚎𝚍 𝚝𝚘 𝚐𝚞𝚎𝚜𝚜 𝚝𝚑𝚎 𝚌𝚘𝚛𝚛𝚎𝚌𝚝 𝚗𝚞𝚖𝚋𝚎𝚛...`
+            `\n   ＴＨＥＲＥ＇Ｓ Ａ ＮＯＴＥ ＯＮ ＴＨＥ ＤＯＯＲ： ＴＯ ＯＰＥＮ ＴＨＩＳ ＤＯＯＲ， ＹＯＵ ＮＥＥＤ ＴＯ ＧＵＥＳＳ ＴＨＥ ＣＯＲＲＥＣＴ ＮＵＭＢＥＲ．．．`
           )
         );
-        const success = playNumberGuessingGame(); // Call the number guessing game
+        const success = playNumberGuessingGame(); // Call the number guessing for the Left door
         if (success) {
-          secondRoom(); // Call the next room
+          secondRoom(); // Proceed to the next room on success
         } else {
           console.log(
             chalk.yellow(`
@@ -146,17 +154,17 @@ function firstRoom() {
          ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
         `)
           );
-          firstRoom();
+          firstRoom(); // Retry if the player fails
         }
       } else if (answer === "  ＲＩＧＨＴ ＤＯＯＲ") {
         console.log(
           chalk.cyanBright(
-            `\n   𝚃𝚑𝚎𝚛𝚎'𝚜 𝚊 𝚛𝚒𝚍𝚍𝚕𝚎 𝚘𝚗 𝚝𝚑𝚎 𝚍𝚘𝚘𝚛: '𝚃𝚘 𝚘𝚙𝚎𝚗 𝚝𝚑𝚒𝚜 𝚍𝚘𝚘𝚛, 𝚊𝚗𝚜𝚠𝚎𝚛 𝚝𝚑𝚎 𝚏𝚘𝚕𝚕𝚘𝚠𝚒𝚗𝚐...`
+            `\n   ＴＨＥＲＥ＇Ｓ Ａ ＲＩＤＤＬＥ ＯＮ ＴＨＥ ＤＯＯＲ： ＴＯ ＯＰＥＮ ＴＨＩＳ ＤＯＯＲ， ＡＮＳＷＥＲ ＴＨＥ ＦＯＬＬＯＷＩＮＧ．．．`
           )
         );
         const success = riddleChallenge(); // Call the riddle challenge for the Right door
         if (success) {
-          secondRoom(); // Call the next room
+          secondRoom(); // Proceed to the next room on success
         } else {
           console.log(
             chalk.yellow(`
@@ -165,16 +173,17 @@ function firstRoom() {
          ╩ ╩╚═ ╩    ╩ ╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ═╩╝╚═╝╚═╝╩╚═
         `)
           );
-          firstRoom(); // Retry if failed
+          firstRoom(); // Retry if the player fails
         }
       }
     })
     .catch((error) => {
-      console.log(chalk.red("Error with enquirer:", error));
+      console.log(chalk.red("Ｅｒｒｏｒ ｗｉｔｈ ｅｎｑｕｉｒｅｒ：", error));
     });
-}
+};
 
-function secondRoom() {
+// Placeholder function for the second room with two doors
+const secondRoom = () => {
   let nextRoomArt = `
      \\                                                                /
       \\                                                              /
@@ -211,18 +220,23 @@ function secondRoom() {
 `)
   );
 
+  // Function to prompt the player to choose a direction using enquirer
   const prompt = new Select({
-    name: "secondRoomChoice",
-    message: "  ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ ！！！",
-    choices: ["  ＷＥＳＴ ＤＯＯＲ", "  ＥＡＳＴ ＤＯＯＲ"],
+    name: "secondRoomChoice", // Name of the prompt, used for identification
+    message: chalk.bgCyan(
+      `  ＣＨＯＯＳＥ ＷＥＳＴ ＯＲ ＥＡＳＴ ＤＯＯＲ ！！！\n`
+    ), // Message displayed to the user
+    choices: ["  ＷＥＳＴ ＤＯＯＲ", "  ＥＡＳＴ ＤＯＯＲ"], // Options available to the user
   });
+  // Run the prompt and handle the user's choice
   prompt
     .run()
     .then((answer) => {
+      // Check which lock the user chose
       if (answer === "  ＷＥＳＴ ＤＯＯＲ") {
         console.log(
           chalk.green(
-            "\n  Ｙｏｕ ｕｎｌｏｃｋ ｔｈｅ ｌｅｆｔ ｄｏｏｒ ａｎｄ ｍｏｖｅ ｔｏ ｔｈｅ ｎｅｘｔ ｒｏｏｍ．．．"
+            "\n  ＹＯＵ ＵＮＬＯＣＫ ＴＨＥ ＷＥＳＴ ＤＯＯＲ ＡＮＤ ＭＯＶＥ ＴＯ ✊🤚✌️ ＲＯＣＫ， ＰＡＰＥＲ， ＳＣＩＳＳＯＲＳ ＧＡＭＥ ✊🤚✌️．．．"
           )
         );
         playRockPaperScissors()
@@ -248,7 +262,7 @@ function secondRoom() {
       } else if (answer === "  ＥＡＳＴ ＤＯＯＲ") {
         console.log(
           chalk.green(
-            "\n  Ｙｏｕ ｕｎｌｏｃｋ ｔｈｅ ｒｉｇｈｔ ｄｏｏｒ ａｎｄ ｍｏｖｅ ｔｏ ｔｈｅ ｎｅｘｔ ｒｏｏｍ．．．"
+            "\n  ＹＯＵ ＵＮＬＯＣＫ ＴＨＥ ＥＡＳＴ ＤＯＯＲ ＡＮＤ ＭＯＶＥ ＴＯ ＴＩＣ－ＴＡＣ－ＴＯＥ ＧＡＭＥ．．．"
           )
         );
         playTicTacToe()
@@ -276,9 +290,10 @@ function secondRoom() {
     .catch((error) => {
       console.log(chalk.red("Ｅｒｒｏｒ ｗｉｔｈ ｅｎｑｕｉｒｅｒ：", error));
     });
-}
+};
 
-function thirdRoom() {
+// Function to display a room with door with two locks and prompt the player to choose
+const thirdRoom = () => {
   let lastRoomArt = `
      \\                                                               /
       \\                                                             /
@@ -314,15 +329,19 @@ function thirdRoom() {
 `)
   );
 
+  // Function to prompt the player to choose a direction using enquirer
   const prompt = new Select({
-    name: "thirdRoomChoice",
-    message: `  ＣＨＯＯＳＥ ＴＨＥ ＤＯＯＲ ＬＯＣＫ ！！！
-    `,
-    choices: ["  ＦＩＲＳＴ ＬＯＣＫ", "  ＳＥＣＯＮＤ ＬＯＣＫ"],
+    name: "thirdRoomChoice", // Name of the prompt, used for identification
+    message: chalk.bgCyan(
+      `  ＣＨＯＯＳＥ ＦＩＲＳＴ  ＯＲ ＳＥＣＯＮＤ ＤＯＯＲ ＬＯＣＫ ！！！\n`
+    ), // Message displayed to the user
+    choices: ["  ＦＩＲＳＴ ＬＯＣＫ", "  ＳＥＣＯＮＤ ＬＯＣＫ"], // Options available to the user
   });
+  // Run the prompt and handle the user's choice
   prompt
     .run()
     .then((answer) => {
+      // Check which lock the user chose
       if (answer === "  ＦＩＲＳＴ ＬＯＣＫ") {
         console.log(
           chalk.yellowBright(
@@ -340,14 +359,15 @@ function thirdRoom() {
       }
     })
     .catch((error) => {
-      console.log(chalk.red("Error with enquirer:", error));
+      console.log(chalk.red("Ｅｒｒｏｒ ｗｉｔｈ ｅｎｑｕｉｒｅｒ：", error));
     });
-}
+};
 
-// Function to initiate the room and player choice
-function startDungeonSection() {
-  showTwoDoorsRoom();
-  firstRoom();
-}
+// Function to initiate the dungeon section and display choices
+const startDungeonSection = () => {
+  showTwoDoorsRoom(); // Function that presumably sets the scene for the two doors
+  firstRoom(); // Function that likely initializes the first room settings or context
+};
 
+// Call the function to start the dungeon section
 startDungeonSection();

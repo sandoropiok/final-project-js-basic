@@ -24,8 +24,12 @@ const playRockPaperScissors = () => {
       .run()
       .then((playerChoice) => {
         console.log(
-          chalk.bgMagenta(
-            `\n   ㄚ龱ㄩ ⼕廾龱丂㠪 ${playerChoice}⸝ 闩Ɲᗪ ㄒ廾㠪 Ꮆㄩ闩尺ᗪ ⼕廾龱丂㠪 ${computerChoice}.`
+          chalk.magenta(
+            `\n   ㄚ龱ㄩ ⼕廾龱丂㠪 ${chalk.bgBlack(
+              playerChoice
+            )}⸝ 闩Ɲᗪ ㄒ廾㠪 Ꮆㄩ闩尺ᗪ ⼕廾龱丂㠪 ${chalk.bgBlack(
+              computerChoice
+            )}.`
           )
         );
 
