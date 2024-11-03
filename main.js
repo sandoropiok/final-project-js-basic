@@ -379,6 +379,5 @@ const startDungeonSection = () => {
   showTwoDoorsRoom(); // Function that presumably sets the scene for the two doors
   firstRoom(); // Function that likely initializes the first room settings or context
 };
-
 // Call the function to start the dungeon section
 startDungeonSection();
