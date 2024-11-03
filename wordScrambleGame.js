@@ -48,9 +48,9 @@ const playWordScrambleGame = () => {
             figlet.textSync("Congratulations!", { font: "Cybermedium" })
           )
         );
-        return "end";
+        return "end"; // Successfully completed all levels
       }
-      correctAnswers = 0;
+      correctAnswers = 0; // Reset correct answers for next level
     }
     return currentDifficulty;
   };
@@ -107,13 +107,30 @@ const playWordScrambleGame = () => {
 
   const playGame = () => {
     while (true) {
-      playRound();
-      currentDifficulty = getNextDifficulty();
-      if (currentDifficulty === "end") break;
-    }
-    console.log(chalk.magenta("Game over! Thanks for playing!"));
-  };
+      const roundSuccess = playRound();
+      if (!roundSuccess) break; // Stop the game if failed
 
+      const nextDifficulty = getNextDifficulty();
+      if (nextDifficulty === "end") {
+        console.log(
+          chalk.green(`
+   ██▒   █▓ ██▓ ▄████▄  ▄▄▄█████▓ ▒█████   ██▀███ ▓██   ██▓    ██▓  ██████    ▓██   ██▓ ▒█████   █    ██  ██▀███    ██████  ▐██▌ 
+  ▓██░   █▒▓██▒▒██▀ ▀█  ▓  ██▒ ▓▒▒██▒  ██▒▓██ ▒ ██▒▒██  ██▒   ▓██▒▒██    ▒     ▒██  ██▒▒██▒  ██▒ ██  ▓██▒▓██ ▒ ██▒▒██    ▒  ▐██▌ 
+   ▓██  █▒░▒██▒▒▓█    ▄ ▒ ▓██░ ▒░▒██░  ██▒▓██ ░▄█ ▒ ▒██ ██░   ▒██▒░ ▓██▄        ▒██ ██░▒██░  ██▒▓██  ▒██░▓██ ░▄█ ▒░ ▓██▄    ▐██▌ 
+    ▒██ █░░░██░▒▓▓▄ ▄██▒░ ▓██▓ ░ ▒██   ██░▒██▀▀█▄   ░ ▐██▓░   ░██░  ▒   ██▒     ░ ▐██▓░▒██   ██░▓▓█  ░██░▒██▀▀█▄    ▒   ██▒ ▓██▒ 
+     ▒▀█░  ░██░▒ ▓███▀ ░  ▒██▒ ░ ░ ████▓▒░░██▓ ▒██▒ ░ ██▒▓░   ░██░▒██████▒▒     ░ ██▒▓░░ ████▓▒░▒▒█████▓ ░██▓ ▒██▒▒██████▒▒ ▒▄▄  
+     ░ ▐░  ░▓  ░ ░▒ ▒  ░  ▒ ░░   ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░  ██▒▒▒    ░▓  ▒ ▒▓▒ ▒ ░      ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░ ░▀▀▒ 
+     ░ ░░   ▒ ░  ░  ▒       ░      ░ ▒ ▒░   ░▒ ░ ▒░▓██ ░▒░     ▒ ░░ ░▒  ░ ░    ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░   ░▒ ░ ▒░░ ░▒  ░ ░ ░  ░ 
+       ░░   ▒ ░░          ░      ░ ░ ░ ▒    ░░   ░ ▒ ▒ ░░      ▒ ░░  ░  ░      ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░   ░░   ░ ░  ░  ░      ░ 
+        ░   ░  ░ ░                   ░ ░     ░     ░ ░         ░        ░      ░ ░         ░ ░     ░        ░           ░   ░    
+      
+                Ｙｏｕ＇ｖｅ ｄｅｆｅａｔｅｄ ｔｈｅ ｄａｒｋｎｅｓｓ， ｕｎｌｏｃｋｅｄ ｔｈｅ ｆｉｎａｌ ｄｏｏｒ， 
+                ａｎｄ ｐｒｏｖｅｎ ｙｏｕｒｓｅｌｆ ａ ｔｒｕｅ ｍａｓｔｅｒ ｏｆ ｔｈｅ ｄｕｎｇｅｏｎ ｅｓｃａｐｅ！  `)
+        );
+        break; // End the game after completing all levels
+      }
+    }
+  };
   playGame();
 };
 

@@ -1,26 +1,35 @@
-// playLastRiddleGame.js
 const readline = require("readline-sync");
 const chalk = require("chalk");
-const figlet = require("figlet");
 
 const playLastRiddleGame = () => {
-  console.log(chalk.greenBright(
-    `\n    ＴＯ ＯＰＥＮ ＳＥＣＯＮＤ ＬＯＣＫ， ＹＯＵ ＮＥＥＤ ＴＯ ＳＯＬＶＥ ＴＨＥ ＲＩＤＤＬＥＳ！`
-  ));
+  console.log(
+    chalk.greenBright(
+      `\n    ＴＯ ＯＰＥＮ ＳＥＣＯＮＤ ＬＯＣＫ， ＹＯＵ ＮＥＥＤ ＴＯ ＳＯＬＶＥ ＴＨＥ ＲＩＤＤＬＥＳ！`
+    )
+  );
 
   const riddles = {
     easy: {
-      question: "ＷＨＥＮ ＷＡＳ ＪＡＶＡＳＣＲＩＰＴ ＣＲＥＡＴＥＤ?",
+      question: `
+  ╦ ╦╦ ╦╔═╗╔╗╔  ╦ ╦╔═╗╔═╗   ╦╔═╗╦  ╦╔═╗╔═╗╔═╗╦═╗╦╔═╗╔╦╗  ╔═╗╦═╗╔═╗╔═╗╔╦╗╔═╗╔╦╗┌─┐
+  ║║║╠═╣║╣ ║║║  ║║║╠═╣╚═╗   ║╠═╣╚╗╔╝╠═╣╚═╗║  ╠╦╝║╠═╝ ║   ║  ╠╦╝║╣ ╠═╣ ║ ║╣  ║║ ┌┘
+  ╚╩╝╩ ╩╚═╝╝╚╝  ╚╩╝╩ ╩╚═╝  ╚╝╩ ╩ ╚╝ ╩ ╩╚═╝╚═╝╩╚═╩╩   ╩   ╚═╝╩╚═╚═╝╩ ╩ ╩ ╚═╝═╩╝ o `,
       choices: ["1990", "1995", "2000", "2005"],
       answer: "1995",
     },
     medium: {
-      question: "ＷＨＩＣＨ ＯＦ ＴＨＥＳＥ ＩＳ Ａ ＪＡＶＡＳＣＲＩＰＴ ＦＲＡＭＥＷＯＲＫ？",
+      question: `
+  ╦ ╦╦ ╦╦╔═╗╦ ╦  ╔═╗╔═╗  ╔╦╗╦ ╦╔═╗╔═╗╔═╗  ╦╔═╗  ╔═╗   ╦╔═╗  ╔═╗╦═╗╔═╗╔╦╗╔═╗╦ ╦╔═╗╦═╗╦╔═┌─┐
+  ║║║╠═╣║║  ╠═╣  ║ ║╠╣    ║ ╠═╣║╣ ╚═╗║╣   ║╚═╗  ╠═╣   ║╚═╗  ╠╣ ╠╦╝╠═╣║║║║╣ ║║║║ ║╠╦╝╠╩╗ ┌┘
+  ╚╩╝╩ ╩╩╚═╝╩ ╩  ╚═╝╚     ╩ ╩ ╩╚═╝╚═╝╚═╝  ╩╚═╝  ╩ ╩  ╚╝╚═╝  ╚  ╩╚═╩ ╩╩ ╩╚═╝╚╩╝╚═╝╩╚═╩ ╩ o `,
       choices: ["Django", "Rails", "Laravel", "React"],
       answer: "React",
     },
     hard: {
-      question: "ＷＨＡＴ ＫＥＹＷＯＲＤ ＩＳ ＵＳＥＤ ＴＯ ＤＥＣＬＡＲＥ Ａ ＶＡＲＩＡＢＬＥ ＩＮ ＥＳ６？",
+      question: `
+  ╦ ╦╦ ╦╔═╗╔╦╗  ╦╔═╔═╗╦ ╦╦ ╦╔═╗╦═╗╔╦╗  ╦╔═╗  ╦ ╦╔═╗╔═╗╔╦╗  ╔╦╗╔═╗  ╔╦╗╔═╗╔═╗╦  ╔═╗╦═╗╔═╗  ╔═╗  ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗  ╦╔╗╔  ╔═╗╔═╗┏┓┌─┐
+  ║║║╠═╣╠═╣ ║   ╠╩╗║╣ ╚╦╝║║║║ ║╠╦╝ ║║  ║╚═╗  ║ ║╚═╗║╣  ║║   ║ ║ ║   ║║║╣ ║  ║  ╠═╣╠╦╝║╣   ╠═╣  ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣   ║║║║  ║╣ ╚═╗┣┓ ┌┘
+  ╚╩╝╩ ╩╩ ╩ ╩   ╩ ╩╚═╝ ╩ ╚╩╝╚═╝╩╚══╩╝  ╩╚═╝  ╚═╝╚═╝╚═╝═╩╝   ╩ ╚═╝  ═╩╝╚═╝╚═╝╩═╝╩ ╩╩╚═╚═╝  ╩ ╩   ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝  ╩╝╚╝  ╚═╝╚═╝┗┛ o`,
       choices: ["let", "var", "int", "float"],
       answer: "let",
     },
@@ -31,12 +40,12 @@ const playLastRiddleGame = () => {
   const getNextDifficulty = () => {
     if (currentDifficulty === "easy") return "medium";
     if (currentDifficulty === "medium") return "hard";
-    return "end";
+    return "end"; // No more difficulties
   };
 
   const playRound = (difficulty) => {
     const { question, choices, answer } = riddles[difficulty];
-    console.log(`\n${chalk.cyan(figlet.textSync(question, { font: "Small" }))}`);
+    console.log(`\n${chalk.cyan(question)}`);
 
     const selectedAnswer = readline.keyInSelect(
       choices,
@@ -45,17 +54,19 @@ const playLastRiddleGame = () => {
 
     if (selectedAnswer === -1) {
       console.log(chalk.yellow("Game exited."));
-      return false;
+      return false; // Exit condition
     }
 
     if (choices[selectedAnswer] === answer) {
-      console.log(chalk.green(figlet.textSync("Correct!", { font: "Cybermedium" })));
-      return true;
+      console.log(chalk.green("Correct!"));
+      return true; // Correct answer
     } else {
       console.log(
-        chalk.red(`Ｗｒｏｎｇ ａｎｓｗｅｒ． Ｔｈｅ ｃｏｒｒｅｃｔ ａｎｓｗｅｒ ｗａｓ： ${answer}`)
+        chalk.red(
+          `Ｗｒｏｎｇ ａｎｓｗｅｒ． Ｔｈｅ ｃｏｒｒｅｃｔ ａｎｓｗｅｒ ｗａｓ： ${answer}`
+        )
       );
-      return false;
+      return false; // Wrong answer
     }
   };
 
@@ -66,15 +77,45 @@ const playLastRiddleGame = () => {
 
       currentDifficulty = getNextDifficulty();
       if (currentDifficulty === "end") {
-        console.log(
-          chalk.magenta(figlet.textSync("You did it!", { font: "Cybermedium" }))
-        );
+        console.log(chalk.magenta("You did it!"));
         return true; // Return true when player completes all levels
       }
     }
   };
 
-  return playGame();
+  const victory = playGame();
+  if (victory) {
+    console.log(
+      chalk.green(`
+ ██▒   █▓ ██▓ ▄████▄  ▄▄▄█████▓ ▒█████   ██▀███ ▓██   ██▓    ██▓  ██████    ▓██   ██▓ ▒█████   █    ██  ██▀███    ██████  ▐██▌ 
+▓██░   █▒▓██▒▒██▀ ▀█  ▓  ██▒ ▓▒▒██▒  ██▒▓██ ▒ ██▒▒██  ██▒   ▓██▒▒██    ▒     ▒██  ██▒▒██▒  ██▒ ██  ▓██▒▓██ ▒ ██▒▒██    ▒  ▐██▌ 
+ ▓██  █▒░▒██▒▒▓█    ▄ ▒ ▓██░ ▒░▒██░  ██▒▓██ ░▄█ ▒ ▒██ ██░   ▒██▒░ ▓██▄        ▒██ ██░▒██░  ██▒▓██  ▒██░▓██ ░▄█ ▒░ ▓██▄    ▐██▌ 
+  ▒██ █░░░██░▒▓▓▄ ▄██▒░ ▓██▓ ░ ▒██   ██░▒██▀▀█▄   ░ ▐██▓░   ░██░  ▒   ██▒     ░ ▐██▓░▒██   ██░▓▓█  ░██░▒██▀▀█▄    ▒   ██▒ ▓██▒ 
+   ▒▀█░  ░██░▒ ▓███▀ ░  ▒██▒ ░ ░ ████▓▒░░██▓ ▒██▒ ░ ██▒▓░   ░██░▒██████▒▒     ░ ██▒▓░░ ████▓▒░▒▒█████▓ ░██▓ ▒██▒▒██████▒▒ ▒▄▄  
+   ░ ▐░  ░▓  ░ ░▒ ▒  ░  ▒ ░░   ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░  ██▒▒▒    ░▓  ▒ ▒▓▒ ▒ ░      ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░ ░▀▀▒ 
+   ░ ░░   ▒ ░  ░  ▒       ░      ░ ▒ ▒░   ░▒ ░ ▒░▓██ ░▒░     ▒ ░░ ░▒  ░ ░    ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░   ░▒ ░ ▒░░ ░▒  ░ ░ ░  ░ 
+     ░░   ▒ ░░          ░      ░ ░ ░ ▒    ░░   ░ ▒ ▒ ░░      ▒ ░░  ░  ░      ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░   ░░   ░ ░  ░  ░      ░ 
+      ░   ░  ░ ░                   ░ ░     ░     ░ ░         ░        ░      ░ ░         ░ ░     ░        ░           ░   ░    
+    
+              Ｙｏｕ＇ｖｅ ｄｅｆｅａｔｅｄ ｔｈｅ ｄａｒｋｎｅｓｓ， ｕｎｌｏｃｋｅｄ ｔｈｅ ｆｉｎａｌ ｄｏｏｒ， 
+              ａｎｄ ｐｒｏｖｅｎ ｙｏｕｒｓｅｌｆ ａ ｔｒｕｅ ｍａｓｔｅｒ ｏｆ ｔｈｅ ｄｕｎｇｅｏｎ ｅｓｃａｐｅ！  `)
+    );
+  } else {
+    console.log(
+      chalk.redBright(`                            
+          ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  
+         ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒
+        ▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒
+        ░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  
+        ░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒
+         ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
+          ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░
+        ░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ 
+              ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░           
+    `)
+    );
+  }
+  playGame();
 };
 
 module.exports = playLastRiddleGame;
