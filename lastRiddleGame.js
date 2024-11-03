@@ -1,9 +1,16 @@
 const readline = require("readline-sync");
 const chalk = require("chalk");
 
+// Main function that runs the riddle game
 const playLastRiddleGame = () => {
-  console.log(chalk.greenBright(`\n    ＴＯ ＯＰＥＮ ＳＥＣＯＮＤ ＬＯＣＫ， ＹＯＵ ＮＥＥＤ ＴＯ ＳＯＬＶＥ ＴＨＥ ＲＩＤＤＬＥＳ！`));
+  // Introduction message
+  console.log(
+    chalk.greenBright(
+      `\n    ＴＯ ＯＰＥＮ ＳＥＣＯＮＤ ＬＯＣＫ， ＹＯＵ ＮＥＥＤ ＴＯ ＳＯＬＶＥ ＴＨＥ ＲＩＤＤＬＥＳ！`
+    )
+  );
 
+  // Object containing riddle data for each difficulty level
   const riddles = {
     easy: {
       question: `
@@ -31,86 +38,94 @@ const playLastRiddleGame = () => {
     },
   };
 
-  let currentDifficulty = "easy";
+  let currentDifficulty = "easy"; // Start the game at "easy" difficulty
 
+  // Function to progress to the next difficulty level
   const getNextDifficulty = () => {
     if (currentDifficulty === "easy") return "medium";
     if (currentDifficulty === "medium") return "hard";
     return "end"; // No more difficulties
   };
 
+  // Function to play a single round with the given difficulty
   const playRound = (difficulty) => {
     const { question, choices, answer } = riddles[difficulty];
-    console.log(`\n${chalk.cyan(question)}`);
+    console.log(`\n  ${chalk.cyan(question)}`);
 
     const selectedAnswer = readline.keyInSelect(
       choices,
-      "ＣＨＯＳＳＥ ＹＯＵＲ ＡＮＳＷＥＲ："
+      chalk.bgCyan(`ＣＨＯＳＳＥ ＹＯＵＲ ＡＮＳＷＥＲ：`)
     );
 
+    // Check if the user chose to exit
     if (selectedAnswer === -1) {
-      console.log(chalk.yellow("Game exited."));
-      return false; // Exit condition
+      console.log(
+        chalk.yellow(`
+    █▀▀ ▄▀█ █▀▄▀█ █▀▀   █▀▀ ▀▄▀ █ ▀█▀ █▀▀ █▀▄ ░
+    █▄█ █▀█ █░▀░█ ██▄   ██▄ █░█ █ ░█░ ██▄ █▄▀ ▄`)
+      );
+      return false; // Exit the game loop
     }
 
+    // Check if the selected answer is correct
     if (choices[selectedAnswer] === answer) {
-      console.log(chalk.green("Correct!"));
-      return true; // Correct answer
+      console.log(
+        chalk.greenBright(`
+    ╔═╗┌─┐┬─┐┬─┐┌─┐┌─┐┌┬┐┬
+    ║  │ │├┬┘├┬┘├┤ │   │ │
+    ╚═╝└─┘┴└─┴└─└─┘└─┘ ┴ o
+    ＰＲＯＣＥＥＤ ＴＯ ＮＥＸＴ ＲＯＵＮＤ`)
+      );
+      return true; // Proceed to next round if correct
     } else {
       console.log(
-        chalk.red(
-          `Ｗｒｏｎｇ ａｎｓｗｅｒ． Ｔｈｅ ｃｏｒｒｅｃｔ ａｎｓｗｅｒ ｗａｓ： ${answer}`
-        )
+        chalk.red(`
+        ╦ ╦┬─┐┌─┐┌┐┌┌─┐  ┌─┐┌┐┌┌─┐┬ ┬┌─┐┬─┐┬
+        ║║║├┬┘│ │││││ ┬  ├─┤│││└─┐│││├┤ ├┬┘│
+        ╚╩╝┴└─└─┘┘└┘└─┘  ┴ ┴┘└┘└─┘└┴┘└─┘┴└─o
+        Ｔｈｅ ｃｏｒｒｅｃｔ ａｎｓｗｅｒ ｗａｓ： ${chalk.bgYellow(answer)}
+        `)
       );
-      return false; // Wrong answer
+      return false; // End game if incorrect
     }
   };
 
+  // Main game loop
   const playGame = () => {
     while (true) {
       const roundResult = playRound(currentDifficulty);
-      if (!roundResult) return false; // Return false if player exits or answers incorrectly
+      if (!roundResult) return false; // Stop game on incorrect answer or exit
 
+      // Move to the next difficulty level
       currentDifficulty = getNextDifficulty();
       if (currentDifficulty === "end") {
-        console.log(chalk.magenta("You did it!"));
-        return true; // Return true when player completes all levels
+        console.log(
+          chalk.green(`
+  ╦ ╦┌─┐┬ ┬┬  ┬┌─┐  ┌┬┐┌─┐┌─┐┌─┐┌─┐┌┬┐┌─┐┌┬┐  ┌┬┐┬ ┬┌─┐  ┌┬┐┌─┐┬─┐┬┌─┌┐┌┌─┐┌─┐┌─┐   ┬ ┬┌┐┌┬  ┌─┐┌─┐┬┌─┌─┐┌┬┐  ┌┬┐┬ ┬┌─┐  ┌─┐┬┌┐┌┌─┐┬  
+  ╚╦╝│ ││ │└┐┌┘├┤    ││├┤ ├┤ ├┤ ├─┤ │ ├┤  ││   │ ├─┤├┤    ││├─┤├┬┘├┴┐│││├┤ └─┐└─┐   │ │││││  │ ││  ├┴┐├┤  ││   │ ├─┤├┤   ├┤ ││││├─┤│  
+   ╩ └─┘└─┘ └┘ └─┘  ─┴┘└─┘└  └─┘┴ ┴ ┴ └─┘─┴┘   ┴ ┴ ┴└─┘  ─┴┘┴ ┴┴└─┴ ┴┘└┘└─┘└─┘└─┘┘  └─┘┘└┘┴─┘└─┘└─┘┴ ┴└─┘─┴┘   ┴ ┴ ┴└─┘  └  ┴┘└┘┴ ┴┴─┘
+          ┌┬┐┌─┐┌─┐┬─┐   ┌─┐┌┐┌┌┬┐  ┌─┐┬─┐┌─┐┬  ┬┌─┐┌┐┌  ┬ ┬┌─┐┬ ┬┬─┐┌─┐┌─┐┬  ┌─┐  ┌─┐  ┌┬┐┬─┐┬ ┬┌─┐  ┌┬┐┌─┐┌─┐┌┬┐┌─┐┬─┐  
+           │││ ││ │├┬┘   ├─┤│││ ││  ├─┘├┬┘│ │└┐┌┘├┤ │││  └┬┘│ ││ │├┬┘└─┐├┤ │  ├┤   ├─┤   │ ├┬┘│ │├┤   │││├─┤└─┐ │ ├┤ ├┬┘  
+          ─┴┘└─┘└─┘┴└─┘  ┴ ┴┘└┘─┴┘  ┴  ┴└─└─┘ └┘ └─┘┘└┘   ┴ └─┘└─┘┴└─└─┘└─┘┴─┘└    ┴ ┴   ┴ ┴└─└─┘└─┘  ┴ ┴┴ ┴└─┘ ┴ └─┘┴└─
+                                  ┌─┐┌─┐  ┌┬┐┬ ┬┌─┐  ┌┬┐┬ ┬┌┐┌┌─┐┌─┐┌─┐┌┐┌  ┌─┐┌─┐┌─┐┌─┐┌─┐┌─┐┬
+                                  │ │├┤    │ ├─┤├┤    │││ │││││ ┬├┤ │ ││││  ├┤ └─┐│  ├─┤├─┘├┤ │
+                                  └─┘└     ┴ ┴ ┴└─┘  ─┴┘└─┘┘└┘└─┘└─┘└─┘┘└┘  └─┘└─┘└─┘┴ ┴┴  └─┘o  
+
+     ██▒   █▓ ██▓ ▄████▄  ▄▄▄█████▓ ▒█████   ██▀███ ▓██   ██▓    ██▓  ██████    ▓██   ██▓ ▒█████   █    ██  ██▀███    ██████  ▐██▌ 
+    ▓██░   █▒▓██▒▒██▀ ▀█  ▓  ██▒ ▓▒▒██▒  ██▒▓██ ▒ ██▒▒██  ██▒   ▓██▒▒██    ▒     ▒██  ██▒▒██▒  ██▒ ██  ▓██▒▓██ ▒ ██▒▒██    ▒  ▐██▌ 
+     ▓██  █▒░▒██▒▒▓█    ▄ ▒ ▓██░ ▒░▒██░  ██▒▓██ ░▄█ ▒ ▒██ ██░   ▒██▒░ ▓██▄        ▒██ ██░▒██░  ██▒▓██  ▒██░▓██ ░▄█ ▒░ ▓██▄    ▐██▌ 
+      ▒██ █░░░██░▒▓▓▄ ▄██▒░ ▓██▓ ░ ▒██   ██░▒██▀▀█▄   ░ ▐██▓░   ░██░  ▒   ██▒     ░ ▐██▓░▒██   ██░▓▓█  ░██░▒██▀▀█▄    ▒   ██▒ ▓██▒ 
+       ▒▀█░  ░██░▒ ▓███▀ ░  ▒██▒ ░ ░ ████▓▒░░██▓ ▒██▒ ░ ██▒▓░   ░██░▒██████▒▒     ░ ██▒▓░░ ████▓▒░▒▒█████▓ ░██▓ ▒██▒▒██████▒▒ ▒▄▄  
+       ░ ▐░  ░▓  ░ ░▒ ▒  ░  ▒ ░░   ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░  ██▒▒▒    ░▓  ▒ ▒▓▒ ▒ ░      ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░ ░▀▀▒ 
+       ░ ░░   ▒ ░  ░  ▒       ░      ░ ▒ ▒░   ░▒ ░ ▒░▓██ ░▒░     ▒ ░░ ░▒  ░ ░    ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░   ░▒ ░ ▒░░ ░▒  ░ ░ ░  ░ 
+         ░░   ▒ ░░          ░      ░ ░ ░ ▒    ░░   ░ ▒ ▒ ░░      ▒ ░░  ░  ░      ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░   ░░   ░ ░  ░  ░      ░ 
+          ░   ░  ░ ░                   ░ ░     ░     ░ ░         ░        ░      ░ ░         ░ ░     ░        ░           ░   ░    
+        `)
+        );
+        return true; // Victory condition met
       }
     }
   };
-
-  const victory = playGame();
-  if (victory) {
-    console.log(
-      chalk.green(`
- ██▒   █▓ ██▓ ▄████▄  ▄▄▄█████▓ ▒█████   ██▀███ ▓██   ██▓    ██▓  ██████    ▓██   ██▓ ▒█████   █    ██  ██▀███    ██████  ▐██▌ 
-▓██░   █▒▓██▒▒██▀ ▀█  ▓  ██▒ ▓▒▒██▒  ██▒▓██ ▒ ██▒▒██  ██▒   ▓██▒▒██    ▒     ▒██  ██▒▒██▒  ██▒ ██  ▓██▒▓██ ▒ ██▒▒██    ▒  ▐██▌ 
- ▓██  █▒░▒██▒▒▓█    ▄ ▒ ▓██░ ▒░▒██░  ██▒▓██ ░▄█ ▒ ▒██ ██░   ▒██▒░ ▓██▄        ▒██ ██░▒██░  ██▒▓██  ▒██░▓██ ░▄█ ▒░ ▓██▄    ▐██▌ 
-  ▒██ █░░░██░▒▓▓▄ ▄██▒░ ▓██▓ ░ ▒██   ██░▒██▀▀█▄   ░ ▐██▓░   ░██░  ▒   ██▒     ░ ▐██▓░▒██   ██░▓▓█  ░██░▒██▀▀█▄    ▒   ██▒ ▓██▒ 
-   ▒▀█░  ░██░▒ ▓███▀ ░  ▒██▒ ░ ░ ████▓▒░░██▓ ▒██▒ ░ ██▒▓░   ░██░▒██████▒▒     ░ ██▒▓░░ ████▓▒░▒▒█████▓ ░██▓ ▒██▒▒██████▒▒ ▒▄▄  
-   ░ ▐░  ░▓  ░ ░▒ ▒  ░  ▒ ░░   ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░  ██▒▒▒    ░▓  ▒ ▒▓▒ ▒ ░      ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░ ░▀▀▒ 
-   ░ ░░   ▒ ░  ░  ▒       ░      ░ ▒ ▒░   ░▒ ░ ▒░▓██ ░▒░     ▒ ░░ ░▒  ░ ░    ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░   ░▒ ░ ▒░░ ░▒  ░ ░ ░  ░ 
-     ░░   ▒ ░░          ░      ░ ░ ░ ▒    ░░   ░ ▒ ▒ ░░      ▒ ░░  ░  ░      ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░   ░░   ░ ░  ░  ░      ░ 
-      ░   ░  ░ ░                   ░ ░     ░     ░ ░         ░        ░      ░ ░         ░ ░     ░        ░           ░   ░    
-    
-              Ｙｏｕ＇ｖｅ ｄｅｆｅａｔｅｄ ｔｈｅ ｄａｒｋｎｅｓｓ， ｕｎｌｏｃｋｅｄ ｔｈｅ ｆｉｎａｌ ｄｏｏｒ， 
-              ａｎｄ ｐｒｏｖｅｎ ｙｏｕｒｓｅｌｆ ａ ｔｒｕｅ ｍａｓｔｅｒ ｏｆ ｔｈｅ ｄｕｎｇｅｏｎ ｅｓｃａｐｅ！  `)
-    );
-  } else {
-    console.log(
-      chalk.redBright(`                            
-          ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  
-         ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒
-        ▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒
-        ░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  
-        ░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒
-         ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
-          ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░
-        ░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ 
-              ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░           
-    `)
-    );
-  }
   playGame();
 };
 
