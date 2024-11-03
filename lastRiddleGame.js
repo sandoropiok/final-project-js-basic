@@ -2,11 +2,7 @@ const readline = require("readline-sync");
 const chalk = require("chalk");
 
 const playLastRiddleGame = () => {
-  console.log(
-    chalk.greenBright(
-      `\n    ＴＯ ＯＰＥＮ ＳＥＣＯＮＤ ＬＯＣＫ， ＹＯＵ ＮＥＥＤ ＴＯ ＳＯＬＶＥ ＴＨＥ ＲＩＤＤＬＥＳ！`
-    )
-  );
+  console.log(chalk.greenBright(`\n    ＴＯ ＯＰＥＮ ＳＥＣＯＮＤ ＬＯＣＫ， ＹＯＵ ＮＥＥＤ ＴＯ ＳＯＬＶＥ ＴＨＥ ＲＩＤＤＬＥＳ！`));
 
   const riddles = {
     easy: {

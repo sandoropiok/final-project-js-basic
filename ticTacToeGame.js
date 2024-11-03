@@ -2,7 +2,7 @@ const chalk = require("chalk");
 const figlet = require("figlet");
 const { Select } = require("enquirer");
 
-function playTicTacToe() {
+const playTicTacToe = () => {
   return new Promise((resolve) => {
     console.log(
       chalk.greenBright(`
@@ -21,7 +21,7 @@ function playTicTacToe() {
     const computer = "O"; // Computer
 
     // Display the board in the console
-    function printBoard() {
+    const printBoard = () => {
       console.log(`
      ${board[0]} | ${board[1]} | ${board[2]}
     ---+---+---
@@ -29,10 +29,10 @@ function playTicTacToe() {
     ---+---+---
      ${board[6]} | ${board[7]} | ${board[8]}
     `);
-    }
+    };
 
     // Check if a player has won
-    function checkWin(player) {
+    const checkWin = (player) => {
       const winningCombos = [
         [0, 1, 2],
         [3, 4, 5],
@@ -46,22 +46,22 @@ function playTicTacToe() {
       return winningCombos.some((combo) =>
         combo.every((index) => board[index] === player)
       );
-    }
+    };
 
     // Check if the game is a draw
-    function checkDraw() {
+    const checkDraw = () => {
       return board.every((cell) => cell !== " ");
-    }
+    };
 
     // Get available moves (empty cells)
-    function getAvailableMoves() {
+    const getAvailableMoves = () => {
       return board
         .map((cell, index) => (cell === " " ? index : null))
         .filter((index) => index !== null);
-    }
+    };
 
     // Function to handle computer's turn
-    function computerMove() {
+    const computerMove = () => {
       const availableMoves = getAvailableMoves();
       const move =
         availableMoves[Math.floor(Math.random() * availableMoves.length)];
@@ -73,10 +73,10 @@ function playTicTacToe() {
         move + 1
       ); // Display computer's move (1-indexed)
       printBoard();
-    }
+    };
 
     // Main game loop
-    function gameLoop() {
+    const gameLoop = () => {
       // Player's turn
       const availableMoves = getAvailableMoves();
       const prompt = new Select({
@@ -127,10 +127,10 @@ function playTicTacToe() {
           console.error("An error occurred:", error);
           resolve(false); // Resolve the promise with failure in case of error
         });
-    }
+    };
 
     gameLoop(); // Start the game loop
   });
-}
+};
 
 module.exports = playTicTacToe;
