@@ -1,7 +1,7 @@
 const readline = require("readline-sync");
 const chalk = require("chalk");
 
-function riddleChallenge() {
+const riddleChallenge = () => {
   console.log(
     chalk.yellow(
       `\n   Ａ ｂｏｏｍｉｎｇ ｖｏｉｃｅ ｅｃｈｏｅｓ ｆｒｏｍ ｔｈｅ ｓｈａｄｏｗｓ：`
@@ -27,7 +27,7 @@ function riddleChallenge() {
 
   let answer = readline
     .question(chalk.bold.cyan("      Ⴤ〇ᑌᖇ ᗩƝ⟆ᙡᕮᖇ: "))
-    .toLowerCase();
+    .toLowerCase(); // Variable to teke answer
 
   if (answer === "javascript") {
     console.log(
@@ -51,6 +51,6 @@ function riddleChallenge() {
     );
     return false; // Indicate failure
   }
-}
+};
 
 module.exports = riddleChallenge;
