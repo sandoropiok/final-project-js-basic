@@ -1,7 +1,7 @@
 const { Select } = require("enquirer");
 const chalk = require("chalk");
 
-function playRockPaperScissors() {
+const playRockPaperScissors = () => {
   return new Promise((resolve) => {
     const choices = [" 尺龱⼕长", " 尸闩尸㠪尺", " 丂⼕工丂丂龱尺丂"];
     const computerChoice = choices[Math.floor(Math.random() * 3)];
@@ -15,7 +15,8 @@ function playRockPaperScissors() {
       name: "playerChoice",
       message: chalk.cyan(
         `\n   ⼕廾龱丂㠪 尺龱⼕长⸝ 尸闩尸㠪尺 龱尺 丂⼕工丂丂龱尺丂:
-        `),
+        `
+      ),
       choices: choices,
     });
 
@@ -41,8 +42,7 @@ function playRockPaperScissors() {
         } else if (
           (playerChoice === " 尺龱⼕长" &&
             computerChoice === " 丂⼕工丂丂龱尺丂") ||
-          (playerChoice === " 尸闩尸㠪尺" &&
-            computerChoice === " 尺龱⼕长") ||
+          (playerChoice === " 尸闩尸㠪尺" && computerChoice === " 尺龱⼕长") ||
           (playerChoice === " 丂⼕工丂丂龱尺丂" &&
             computerChoice === " 尸闩尸㠪尺")
         ) {
@@ -73,5 +73,5 @@ function playRockPaperScissors() {
         resolve(false);
       });
   });
-}
+};
 module.exports = playRockPaperScissors;
