@@ -178,6 +178,7 @@ const firstRoom = () => {
       }
     })
     .catch((error) => {
+      // Handle any errors that occur during the prompt
       console.log(chalk.red("Ｅｒｒｏｒ ｗｉｔｈ ｅｎｑｕｉｒｅｒ：", error));
     });
 };
@@ -257,6 +258,7 @@ const secondRoom = () => {
             }
           })
           .catch((error) =>
+            // Handle any errors that occur during the prompt
             console.log(chalk.red("Ｇａｍｅ ｅｒｒｏｒ：", error))
           );
       } else if (answer === "  ＥＡＳＴ ＤＯＯＲ") {
@@ -283,11 +285,13 @@ const secondRoom = () => {
             }
           })
           .catch((error) =>
+            // Handle any errors that occur during the prompt
             console.log(chalk.red("Ｇａｍｅ ｅｒｒｏｒ：", error))
           );
       }
     })
     .catch((error) => {
+      // Handle any errors that occur during the prompt
       console.log(chalk.red("Ｅｒｒｏｒ ｗｉｔｈ ｅｎｑｕｉｒｅｒ：", error));
     });
 };
@@ -359,6 +363,7 @@ const thirdRoom = () => {
       }
     })
     .catch((error) => {
+      // Handle any errors that occur during the prompt
       console.log(chalk.red("Ｅｒｒｏｒ ｗｉｔｈ ｅｎｑｕｉｒｅｒ：", error));
     });
 };
